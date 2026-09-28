@@ -13,13 +13,13 @@
 <body>
   <div class="cartridge-wrapper">
     <!-- Header Banner -->
-    <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid var(--border-dark); padding-bottom: 12px; margin-bottom: 16px;">
+    <div class="responsive-header-banner">
       <div>
-        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap;">
           <span class="badge-pixel cyan">[ YOUR SECTOR ]</span>
           <span class="badge-pixel">EXP-ID: [ALGO-ID]</span>
         </div>
-        <h1 style="font-family: var(--font-pixel); font-size: 1.25rem; margin: 0;">[ ALGORITHM FULL NAME ]</h1>
+        <h1 style="font-size: 1.25rem; font-weight: 700; margin: 0; color: var(--text-bright);">[ ALGORITHM FULL NAME ]</h1>
       </div>
       <span class="badge-pixel amber">DIFFICULTY: INTERMEDIATE</span>
     </div>
@@ -95,7 +95,7 @@
           </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+        <div class="responsive-split-grid" style="margin-bottom: 16px;">
           <div>
             <label for="template-input" style="display: block; font-family: var(--font-pixel); font-size: 0.82rem; margin-bottom: 6px;">
               INPUT DATA / MESSAGE:

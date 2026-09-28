@@ -1,6 +1,6 @@
 /* ==========================================================================
    EXPERIMENT MODULE: MD5 HASH ALGORITHM
-   Cartridge Scoped Stylesheet
+   Cartridge Scoped Stylesheet (Fully Responsive)
    ========================================================================== */
 
 .cartridge-wrapper {
@@ -27,7 +27,7 @@
 
 .register-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
   gap: 10px;
   margin-bottom: 16px;
 }
@@ -35,14 +35,16 @@
 .register-cell {
   background: var(--bg-surface-elevated);
   border: 1px solid var(--border-medium);
+  border-radius: 4px;
   padding: 10px;
   text-align: center;
 }
 
 .register-name {
-  font-family: var(--font-pixel);
-  font-size: 0.8rem;
-  color: var(--cyber-cyan-dim);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--cyber-cyan);
   margin-bottom: 4px;
 }
 
@@ -50,4 +52,16 @@
   font-family: var(--font-mono);
   font-size: 0.85rem;
   font-weight: bold;
+  word-break: break-all;
+}
+
+@media (max-width: 600px) {
+  .cartridge-wrapper {
+    padding: 10px;
+  }
+
+  .register-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
 }

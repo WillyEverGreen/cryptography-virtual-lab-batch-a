@@ -1,6 +1,6 @@
 /* ==========================================================================
    EXPERIMENT MODULE: HMAC (KEYED-HASH MESSAGE AUTHENTICATION)
-   Cartridge Scoped Stylesheet
+   Cartridge Scoped Stylesheet (Fully Responsive)
    ========================================================================== */
 
 .cartridge-wrapper {
@@ -32,5 +32,12 @@
   padding: 12px;
   background: var(--bg-surface-elevated);
   border: 1px solid var(--border-medium);
+  border-radius: 4px;
   margin-bottom: 16px;
+}
+
+@media (max-width: 640px) {
+  .cartridge-wrapper {
+    padding: 10px;
+  }
 }

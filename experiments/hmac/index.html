@@ -11,13 +11,14 @@
 </head>
 <body>
   <div class="cartridge-wrapper">
-    <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid var(--border-dark); padding-bottom: 12px; margin-bottom: 16px;">
+    <!-- Header Banner -->
+    <div class="responsive-header-banner">
       <div>
-        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap;">
           <span class="badge-pixel cyan">SECTOR 02: MESSAGE AUTHENTICATION</span>
           <span class="badge-pixel">EXP-ID: HMAC-04</span>
         </div>
-        <h1 style="font-family: var(--font-pixel); font-size: 1.25rem; margin: 0;">HMAC (KEYED-HASH MESSAGE AUTH)</h1>
+        <h1 style="font-size: 1.25rem; font-weight: 700; margin: 0; color: var(--text-bright);">HMAC (KEYED-HASH MESSAGE AUTH)</h1>
       </div>
       <span class="badge-pixel amber">DIFFICULTY: INTERMEDIATE</span>
     </div>
@@ -83,7 +84,7 @@
           <button type="button" id="hmac-reset-btn" class="btn-cyber sm">RESET</button>
         </div>
 
-        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 12px; margin-bottom: 16px;">
+        <div class="responsive-split-grid" style="margin-bottom: 16px;">
           <div>
             <label for="hmac-msg-input" style="display: block; font-family: var(--font-pixel); font-size: 0.82rem; margin-bottom: 6px;">
               MESSAGE (M):

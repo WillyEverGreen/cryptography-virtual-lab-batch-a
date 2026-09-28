@@ -1,6 +1,7 @@
 /* ==========================================================================
    CRYPTOGRAPHY VIRTUAL LAB — MASTER PLATFORM SHELL
-   Modern, sleek developer HUD, 2D sector map, and cartridge iframe deck
+   Modern developer HUD, 2D sector map, and cartridge iframe deck
+   Fully responsive across Desktop, Laptop, Tablet, and Mobile screens
    ========================================================================== */
 
 #app-shell {
@@ -32,6 +33,7 @@
   max-width: 1440px;
   margin: 0 auto;
   width: 100%;
+  flex-wrap: wrap;
 }
 
 .brand-section {
@@ -77,6 +79,8 @@
   align-items: center;
   gap: 6px;
   list-style: none;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .nav-link {
@@ -91,6 +95,8 @@
   color: var(--text-secondary);
   border-radius: 6px;
   border: 1px solid transparent;
+  white-space: nowrap;
+  flex-shrink: 0;
   transition: all var(--transition-fast);
 }
 
@@ -110,6 +116,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 .dossier-pill {
@@ -122,6 +129,7 @@
   border-radius: 6px;
   font-family: var(--font-mono);
   font-size: 0.8rem;
+  white-space: nowrap;
 }
 
 /* --- Viewport Main Container --- */
@@ -161,6 +169,8 @@
   padding: 12px 20px;
   background-color: var(--bg-surface-elevated);
   border-bottom: 1px solid var(--border-dim);
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .map-canvas-container {
@@ -185,11 +195,13 @@
   margin-bottom: 16px;
   border-bottom: 1px solid var(--border-dim);
   padding-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .sector-nodes-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
   gap: 16px;
 }
 
@@ -244,11 +256,14 @@
   padding: 10px 16px;
   background: var(--bg-surface-elevated);
   border-bottom: 1px solid var(--border-dim);
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .cartridge-iframe {
   width: 100%;
-  height: 820px;
+  height: 80vh;
+  min-height: 560px;
   border: none;
   background: var(--bg-surface);
 }
@@ -268,4 +283,65 @@
   max-width: 1440px;
   margin: 0 auto;
   width: 100%;
+}
+
+/* ==========================================================================
+   RESPONSIVE MEDIA QUERIES (Mobile & Tablet)
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .hud-top-bar {
+    padding: 10px 16px;
+    gap: 12px;
+  }
+
+  .nav-links {
+    order: 3;
+    width: 100%;
+    padding-top: 4px;
+    border-top: 1px solid var(--border-dim);
+  }
+
+  .main-viewport {
+    padding: 16px 12px;
+  }
+
+  .map-canvas-container {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .sector-track {
+    padding: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .brand-text h1 {
+    font-size: 0.92rem;
+  }
+
+  .brand-text p {
+    font-size: 0.68rem;
+  }
+
+  .hud-telemetry {
+    width: auto;
+  }
+
+  .dossier-pill {
+    padding: 4px 8px;
+    font-size: 0.75rem;
+  }
+
+  .cartridge-iframe {
+    height: 75vh;
+    min-height: 480px;
+  }
+
+  .cyber-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+  }
 }

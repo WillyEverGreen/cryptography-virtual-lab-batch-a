@@ -1,6 +1,6 @@
 /* ==========================================================================
    EXPERIMENT MODULE TEMPLATE: SCOPED STYLESHEET
-   Group custom styles belong here. Do not override global body/html styles.
+   Group custom styles belong here. Fully responsive across devices.
    ========================================================================== */
 
 .cartridge-wrapper {
@@ -29,7 +29,14 @@
 .visualizer-stage {
   min-height: 200px;
   border: 1px solid var(--border-medium);
+  border-radius: 4px;
   background: var(--bg-surface-elevated);
   padding: 16px;
   margin-bottom: 16px;
+}
+
+@media (max-width: 640px) {
+  .cartridge-wrapper {
+    padding: 10px;
+  }
 }

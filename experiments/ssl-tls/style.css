@@ -1,6 +1,6 @@
 /* ==========================================================================
    EXPERIMENT MODULE: SSL / TLS HANDSHAKE PROTOCOL
-   Cartridge Scoped Stylesheet
+   Cartridge Scoped Stylesheet (Fully Responsive)
    ========================================================================== */
 
 .cartridge-wrapper {
@@ -29,6 +29,14 @@
   min-height: 240px;
   background: var(--bg-surface-elevated);
   border: 1px solid var(--border-medium);
+  border-radius: 4px;
   padding: 16px;
   margin-bottom: 16px;
+  overflow-x: auto;
+}
+
+@media (max-width: 640px) {
+  .cartridge-wrapper {
+    padding: 10px;
+  }
 }

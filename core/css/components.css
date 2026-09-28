@@ -1,6 +1,7 @@
 /* ==========================================================================
    CRYPTOGRAPHY VIRTUAL LAB — COMPONENTS KIT
    Clean, modern, crisp styling for buttons, cards, badges, and tabs
+   Fully responsive across Desktop, Tablet, and Mobile screens
    ========================================================================== */
 
 /* --- Buttons --- */
@@ -21,6 +22,7 @@
   cursor: pointer;
   user-select: none;
   border-radius: 4px;
+  white-space: nowrap;
   transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast);
 }
 
@@ -77,6 +79,7 @@
   border: 1px solid var(--border-medium);
   background-color: var(--bg-surface-elevated);
   color: var(--text-secondary);
+  white-space: nowrap;
 }
 
 .badge-pixel.cyan {
@@ -127,6 +130,8 @@
   border-bottom: 1px solid var(--border-dim);
   padding-bottom: var(--space-xs);
   margin-bottom: var(--space-sm);
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 /* --- Data & Bit Register Panels --- */
@@ -170,6 +175,8 @@
   padding: 6px 8px 0;
   border-radius: 6px 6px 0 0;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
 }
 
 .tab-btn {
@@ -186,6 +193,8 @@
   border-radius: 4px 4px 0 0;
   color: var(--text-muted);
   cursor: pointer;
+  flex-shrink: 0;
+  white-space: nowrap;
   transition: all var(--transition-fast);
 }
 
@@ -201,4 +210,44 @@
   margin-bottom: -1px;
   border-bottom: 2px solid var(--cyber-cyan);
   font-weight: 700;
+}
+
+/* --- Responsive Layout Utilities --- */
+.responsive-split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.responsive-header-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-dim);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Mobile Breakpoints (<640px) */
+@media (max-width: 640px) {
+  .responsive-split-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .cyber-card {
+    padding: 12px;
+  }
+
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .tab-btn {
+    padding: 6px 10px;
+    font-size: 0.78rem;
+  }
 }
