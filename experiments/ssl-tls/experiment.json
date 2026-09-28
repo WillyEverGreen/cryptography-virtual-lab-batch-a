@@ -1,0 +1,22 @@
+{
+  "id": "ssl-tls",
+  "title": "SSL / TLS Handshake Protocol",
+  "category": "Secure Transport Protocols",
+  "sectorId": "sector-network",
+  "difficulty": "Advanced",
+  "estimatedTimeMinutes": 25,
+  "authors": [
+    { "name": "Jace Jaison", "rollNo": "10711" },
+    { "name": "Ahamed Wafiq", "rollNo": "10705" }
+  ],
+  "summary": "Interactive visualizer of the TLS handshake: ClientHello, ServerHello, Certificate exchange, Key Exchange, and Finished messages.",
+  "path": "experiments/ssl-tls/index.html",
+  "icon": "pixel-network",
+  "prerequisites": ["Public Key Cryptography", "Digital Certificates (X.509)", "Symmetric Session Keys"],
+  "testVectors": [
+    {
+      "input": "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256",
+      "expectedOutput": "Encrypted Application Data Session Established"
+    }
+  ]
+}

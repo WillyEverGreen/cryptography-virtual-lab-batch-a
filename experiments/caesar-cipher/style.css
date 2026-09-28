@@ -1,0 +1,125 @@
+/* ==========================================================================
+   EXPERIMENT MODULE: CAESAR CIPHER & FREQUENCY ANALYSIS
+   Cartridge-Scoped Stylesheet (Minimal White & Tactile Retro Pixel)
+   ========================================================================== */
+
+/* Cartridge Container */
+.cartridge-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 16px;
+  background-color: var(--bg-surface);
+}
+
+/* 5-Tab Panes */
+.tab-content {
+  display: none;
+  padding: 20px 0;
+  animation: tabFadeIn 0.15s ease-out;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+@keyframes tabFadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Visual Alphabet Shift Ribbon */
+.shift-ribbon-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px;
+  background: var(--bg-surface-elevated);
+  border: 2px solid var(--border-dark);
+  box-shadow: 2px 2px 0px var(--border-dark);
+  overflow-x: auto;
+}
+
+.alphabet-row {
+  display: flex;
+  gap: 4px;
+}
+
+.letter-cell {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-weight: bold;
+  font-size: 0.95rem;
+  border: 1px solid var(--border-dark);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  flex-shrink: 0;
+  transition: all 0.1s ease;
+}
+
+.letter-cell.cipher {
+  background: var(--bg-surface-hover);
+  color: var(--cyber-cyan);
+  border-color: var(--cyber-cyan);
+}
+
+/* Frequency Distribution Bar Chart */
+.freq-chart-container {
+  display: flex;
+  align-items: flex-end;
+  height: 140px;
+  gap: 4px;
+  padding: 10px;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-medium);
+  overflow-x: auto;
+}
+
+.freq-bar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 24px;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.freq-bar {
+  width: 16px;
+  background-color: var(--cyber-cyan);
+  border: 1px solid var(--border-dark);
+  min-height: 2px;
+  transition: height 0.2s ease;
+}
+
+.freq-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+/* Brute-force Result Box */
+.brute-force-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 8px;
+  max-height: 240px;
+  overflow-y: auto;
+  border: 1px solid var(--border-medium);
+  padding: 10px;
+  background: var(--bg-surface-elevated);
+}
+
+.brute-force-row {
+  display: flex;
+  gap: 8px;
+  padding: 4px 8px;
+  border: 1px solid var(--border-dim);
+  background: var(--bg-surface);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}

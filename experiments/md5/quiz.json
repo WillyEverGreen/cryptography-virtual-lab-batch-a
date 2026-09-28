@@ -1,0 +1,38 @@
+[
+  {
+    "id": "md5-q1",
+    "question": "What is the fixed output digest length produced by the MD5 hash algorithm?",
+    "options": [
+      "128 bits (16 bytes)",
+      "160 bits (20 bytes)",
+      "256 bits (32 bytes)",
+      "512 bits (64 bytes)"
+    ],
+    "correctIndex": 0,
+    "explanation": "MD5 processes 512-bit message blocks and produces a 128-bit (16-byte) hash value represented as a 32-character hexadecimal string."
+  },
+  {
+    "id": "md5-q2",
+    "question": "How many total rounds and operations are executed in MD5 for each 512-bit block?",
+    "options": [
+      "4 rounds of 16 operations each (64 operations total)",
+      "5 rounds of 16 operations each (80 operations total)",
+      "16 rounds of 4 operations each (64 operations total)",
+      "32 rounds of 2 operations each (64 operations total)"
+    ],
+    "correctIndex": 0,
+    "explanation": "MD5 operates in 4 distinct rounds using non-linear functions F, G, H, and I, with each round executing 16 step operations (total 64 steps)."
+  },
+  {
+    "id": "md5-q3",
+    "question": "What mathematical vulnerability has caused MD5 to be cryptographically broken for digital signatures?",
+    "options": [
+      "Practical Collision Attacks (finding two different messages yielding identical hashes)",
+      "Pre-image resistance failure under 1 second",
+      "Key leakage through side-channels",
+      "Only operates on ASCII inputs"
+    ],
+    "correctIndex": 0,
+    "explanation": "Researchers (notably Wang et al., 2004) proved that collisions can be generated quickly, meaning two distinct files can produce the same MD5 hash."
+  }
+]

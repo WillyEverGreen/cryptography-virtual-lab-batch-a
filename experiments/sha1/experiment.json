@@ -1,0 +1,28 @@
+{
+  "id": "sha1",
+  "title": "SHA-1 Hash Algorithm",
+  "category": "Cryptographic Hash Functions",
+  "sectorId": "sector-hash",
+  "difficulty": "Intermediate",
+  "estimatedTimeMinutes": 20,
+  "authors": [
+    { "name": "Swar", "rollNo": "10713" },
+    { "name": "Tanush Chavan", "rollNo": "10710" },
+    { "name": "Aaron Deniz", "rollNo": "10719" },
+    { "name": "Asher", "rollNo": "10715" }
+  ],
+  "summary": "160-bit message digest computation with circular bitwise shifts and message schedule expansion across 80 rounds.",
+  "path": "experiments/sha1/index.html",
+  "icon": "pixel-hash",
+  "prerequisites": ["Modular Addition (mod 2^32)", "Bitwise Logic & Circular Left Shifts"],
+  "testVectors": [
+    {
+      "input": "abc",
+      "expectedOutput": "a9993e364706816aba3e25717850c26c9cd0d89d"
+    },
+    {
+      "input": "",
+      "expectedOutput": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+    }
+  ]
+}

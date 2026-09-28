@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experiment: Caesar Cipher & Cryptanalysis</title>
+  <!-- Core Design System Tokens & Components -->
+  <link rel="stylesheet" href="../../core/css/design-tokens.css">
+  <link rel="stylesheet" href="../../core/css/cyber-retro.css">
+  <link rel="stylesheet" href="../../core/css/components.css">
+  <!-- Cartridge Scoped Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="cartridge-wrapper">
+    <!-- Header Banner -->
+    <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid var(--border-dark); padding-bottom: 12px; margin-bottom: 16px;">
+      <div>
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+          <span class="badge-pixel cyan">SECTOR 01: CLASSICAL CIPHERS</span>
+          <span class="badge-pixel">EXP-ID: CAESAR-01</span>
+        </div>
+        <h1 style="font-family: var(--font-pixel); font-size: 1.25rem; margin: 0;">CAESAR CIPHER & FREQUENCY ANALYSIS</h1>
+      </div>
+      <span class="badge-pixel green">DIFFICULTY: NOVICE</span>
+    </div>
+
+    <!-- 5-Tab Workstation Navigation -->
+    <nav class="tab-nav" aria-label="Experiment Sections">
+      <button class="tab-btn active" data-tab="tab-theory">1. AIM & THEORY</button>
+      <button class="tab-btn" data-tab="tab-procedure">2. PROCEDURE</button>
+      <button class="tab-btn" data-tab="tab-sim">3. SIMULATOR</button>
+      <button class="tab-btn" data-tab="tab-analysis">4. ANALYSIS & VECTORS</button>
+      <button class="tab-btn" data-tab="tab-quiz">5. QUIZ & EVALUATION</button>
+    </nav>
+
+    <!-- Tab 1: Aim & Theory -->
+    <section id="tab-theory" class="tab-content active">
+      <div class="cyber-card" style="margin-bottom: 16px;">
+        <h3 style="font-family: var(--font-pixel); font-size: 0.95rem; margin-bottom: 8px;">1. AIM</h3>
+        <p style="font-size: 0.9rem; color: var(--text-secondary);">
+          To study, implement, and cryptanalyze the classical monoalphabetic Caesar shift cipher, understand modular arithmetic operations over a finite character ring, and demonstrate vulnerability to brute-force and frequency analysis attacks.
+        </p>
+      </div>
+
+      <div class="cyber-card" style="margin-bottom: 16px;">
+        <h3 style="font-family: var(--font-pixel); font-size: 0.95rem; margin-bottom: 8px;">2. OBJECTIVES</h3>
+        <ul style="padding-left: 20px; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.8;">
+          <li>Implement Caesar encryption using modular addition: <code>C = (P + K) mod 26</code>.</li>
+          <li>Implement Caesar decryption using modular subtraction: <code>P = (C - K) mod 26</code>.</li>
+          <li>Evaluate the size of the key space (K &isin; {1, 2, ..., 25}) and understand exhaustive key search.</li>
+          <li>Visualize English letter frequency distribution and observe the preservation of language patterns.</li>
+        </ul>
+      </div>
+
+      <div class="cyber-card" style="margin-bottom: 16px;">
+        <h3 style="font-family: var(--font-pixel); font-size: 0.95rem; margin-bottom: 8px;">3. MATHEMATICAL FOUNDATION</h3>
+        <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 12px;">
+          The Caesar Cipher is an ancient symmetric substitution cipher historically utilized by Julius Caesar to protect military dispatches. Each plaintext letter is replaced by a letter standing a fixed number of positions down the alphabet.
+        </p>
+        <div class="data-register" style="margin-bottom: 12px;">
+          <strong>Encryption Function:</strong> E(p) = (p + k) mod 26<br>
+          <strong>Decryption Function:</strong> D(c) = (c - k + 26) mod 26<br>
+          <em>Where: p &isin; [0, 25] is the plaintext letter index, c &isin; [0, 25] is the ciphertext letter index, and k &isin; [1, 25] is the secret shift key.</em>
+        </div>
+      </div>
+
+      <div class="cyber-card">
+        <h3 style="font-family: var(--font-pixel); font-size: 0.95rem; margin-bottom: 8px;">4. REFERENCES</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">
+          1. Stallings, W. (2017). <em>Cryptography and Network Security: Principles and Practice</em> (7th ed.). Pearson.<br>
+          2. Shannon, C. E. (1949). Communication Theory of Secrecy Systems. <em>Bell System Technical Journal</em>, 28(4), 656-715.
+        </p>
+      </div>
+    </section>
+
+    <!-- Tab 2: Procedure -->
+    <section id="tab-procedure" class="tab-content">
+      <div class="cyber-card">
+        <h3 style="font-family: var(--font-pixel); font-size: 0.95rem; margin-bottom: 12px;">LABORATORY EXPERIMENT PROCEDURE</h3>
+        <ol style="padding-left: 20px; font-size: 0.88rem; color: var(--text-secondary); line-height: 2;">
+          <li>Navigate to the <strong>Simulator</strong> tab.</li>
+          <li>Select the operational mode: <code>ENCRYPT</code> or <code>DECRYPT</code>.</li>
+          <li>Adjust the <strong>Shift Key Slider (K)</strong> between <code>1</code> and <code>25</code>. Observe the physical alignment change in the Alphabet Shift Ribbon.</li>
+          <li>Enter custom plaintext into the text input area, or select a predefined benchmark vector from the dropdown.</li>
+          <li>Observe the real-time generated ciphertext in the output register.</li>
+          <li>Navigate to the <strong>Analysis & Vectors</strong> tab to observe the automated Brute-Force key recovery table and the Letter Frequency distribution histogram.</li>
+          <li>Proceed to the <strong>Quiz & Evaluation</strong> tab to verify your conceptual comprehension.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Tab 3: Interactive Simulation -->
+    <section id="tab-sim" class="tab-content">
+      <div class="cyber-card" style="margin-bottom: 16px;">
+        <div class="card-header">
+          <span style="font-family: var(--font-pixel); font-size: 0.9rem;">INTERACTIVE CAESAR WORKBENCH</span>
+          <div style="display: flex; gap: 8px;">
+            <button type="button" id="mode-encrypt-btn" class="btn-cyber sm primary">ENCRYPT</button>
+            <button type="button" id="mode-decrypt-btn" class="btn-cyber sm">DECRYPT</button>
+            <button type="button" id="sim-reset-btn" class="btn-cyber sm">RESET</button>
+          </div>
+        </div>
+
+        <!-- Shift Key Control -->
+        <div style="margin-bottom: 16px; padding: 12px; background: var(--bg-surface-elevated); border: 1px solid var(--border-medium);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <label for="shift-slider" style="font-family: var(--font-pixel); font-size: 0.85rem; font-weight: bold;">
+              SECRET SHIFT KEY (K): <span id="shift-val-display" style="color: var(--cyber-cyan-dim);">3</span>
+            </label>
+            <span style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted);">(Valid range: 1 to 25)</span>
+          </div>
+          <input type="range" id="shift-slider" min="1" max="25" value="3" style="width: 100%; accent-color: var(--cyber-cyan); cursor: pointer;">
+        </div>
+
+        <!-- Real-time Alphabet Ribbon -->
+        <div style="margin-bottom: 16px;">
+          <div style="font-family: var(--font-pixel); font-size: 0.8rem; margin-bottom: 6px; color: var(--text-secondary);">
+            ALPHABET MAPPING MATRIX [PLAIN (Top) &rarr; CIPHER (Bottom)]:
+          </div>
+          <div class="shift-ribbon-container">
+            <div id="ribbon-plain" class="alphabet-row"></div>
+            <div id="ribbon-cipher" class="alphabet-row"></div>
+          </div>
+        </div>
+
+        <!-- Input & Output Split -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div>
+            <label for="plaintext-input" style="display: block; font-family: var(--font-pixel); font-size: 0.82rem; margin-bottom: 6px;">
+              INPUT MESSAGE:
+            </label>
+            <textarea id="plaintext-input" class="input-cyber" rows="4" placeholder="Type plaintext message here...">CRYPTOGRAPHY VIRTUAL LAB</textarea>
+          </div>
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <label for="ciphertext-output" style="font-family: var(--font-pixel); font-size: 0.82rem;">
+                OUTPUT CIPHERTEXT:
+              </label>
+              <button type="button" id="copy-output-btn" class="btn-cyber sm" style="padding: 2px 6px; font-size: 0.7rem;">
+                COPY
+              </button>
+            </div>
+            <textarea id="ciphertext-output" class="input-cyber data-register" rows="4" readonly></textarea>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 4: Analysis & Vectors -->
+    <section id="tab-analysis" class="tab-content">
+      <!-- Benchmark Vectors -->
+      <div class="cyber-card" style="margin-bottom: 16px;">
+        <div class="card-header">
+          <span style="font-family: var(--font-pixel); font-size: 0.9rem;">CANONICAL TEST VECTORS</span>
+          <select id="test-case-select" class="input-cyber" style="width: auto; padding: 4px 8px; font-size: 0.8rem;">
+            <option value="">-- Load Standard Test Vector --</option>
+            <option value="test-1">Vector 1: 'HELLO WORLD' (K=3) &rarr; 'KHOOR ZRUOG'</option>
+            <option value="test-2">Vector 2: Pangram with ROT13 (K=13)</option>
+            <option value="test-3">Vector 3: 'CRYPTOGRAPHY VIRTUAL LAB' (K=7)</option>
+          </select>
+        </div>
+        <p style="font-size: 0.82rem; color: var(--text-muted);">
+          Selecting a standard vector automatically configures the workbench inputs and evaluates outputs.
+        </p>
+      </div>
+
+      <!-- Letter Frequency Analysis Histogram -->
+      <div class="cyber-card" style="margin-bottom: 16px;">
+        <h3 style="font-family: var(--font-pixel); font-size: 0.9rem; margin-bottom: 8px;">STATISTICAL FREQUENCY DISTRIBUTION</h3>
+        <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 12px;">
+          Notice how the relative frequency heights of characters in longer texts shift as a rigid block without flattening the distribution curve, proving monoalphabetic vulnerability.
+        </p>
+        <div id="freq-chart-container" class="freq-chart-container"></div>
+      </div>
+
+      <!-- Brute Force Exhaustive Search -->
+      <div class="cyber-card">
+        <h3 style="font-family: var(--font-pixel); font-size: 0.9rem; margin-bottom: 8px;">EXHAUSTIVE KEY SEARCH (BRUTE-FORCE CRACKER)</h3>
+        <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 10px;">
+          Because the key space size is bounded by |K| = 25, an adversary can test all candidate keys simultaneously:
+        </p>
+        <div id="brute-force-grid" class="brute-force-grid"></div>
+      </div>
+    </section>
+
+    <!-- Tab 5: Quiz & Evaluation -->
+    <section id="tab-quiz" class="tab-content">
+      <div id="quiz-mount"></div>
+    </section>
+  </div>
+
+  <!-- Universal Scripts -->
+  <script src="../../core/js/lab-bridge.js"></script>
+  <script src="../../core/js/quiz-engine.js"></script>
+  <!-- Experiment Simulation Script -->
+  <script src="script.js"></script>
+</body>
+</html>

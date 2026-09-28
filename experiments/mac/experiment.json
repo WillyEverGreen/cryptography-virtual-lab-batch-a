@@ -1,0 +1,26 @@
+{
+  "id": "mac",
+  "title": "Message Authentication Code (MAC)",
+  "category": "Message Authentication Codes",
+  "sectorId": "sector-auth",
+  "difficulty": "Intermediate",
+  "estimatedTimeMinutes": 20,
+  "authors": [
+    { "name": "Aarna Chopdekar", "rollNo": "10712" },
+    { "name": "Slora Bar", "rollNo": "10708" },
+    { "name": "Arya Chavan", "rollNo": "10709" },
+    { "name": "Cajetan Dsouza", "rollNo": "10723" },
+    { "name": "Shreyas Divekar", "rollNo": "10720" }
+  ],
+  "summary": "Symmetric key authentication, CBC-MAC tag generation, tamper detection, and integrity verification.",
+  "path": "experiments/mac/index.html",
+  "icon": "pixel-shield",
+  "prerequisites": ["Symmetric Block Ciphers", "Cipher Block Chaining (CBC)"],
+  "testVectors": [
+    {
+      "input": "AUTHENTICATE THIS MESSAGE",
+      "key": "SECRETKEY128",
+      "expectedOutput": "VERIFIED_TAG"
+    }
+  ]
+}

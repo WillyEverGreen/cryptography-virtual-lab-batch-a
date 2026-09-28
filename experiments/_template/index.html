@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experiment Template: [Your Algorithm Name]</title>
+  <!-- Core Design System Tokens & Components -->
+  <link rel="stylesheet" href="../../core/css/design-tokens.css">
+  <link rel="stylesheet" href="../../core/css/cyber-retro.css">
+  <link rel="stylesheet" href="../../core/css/components.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="cartridge-wrapper">
+    <!-- Header Banner -->
+    <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid var(--border-dark); padding-bottom: 12px; margin-bottom: 16px;">
+      <div>
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+          <span class="badge-pixel cyan">[ YOUR SECTOR ]</span>
+          <span class="badge-pixel">EXP-ID: [ALGO-ID]</span>
+        </div>
+        <h1 style="font-family: var(--font-pixel); font-size: 1.25rem; margin: 0;">[ ALGORITHM FULL NAME ]</h1>
+      </div>
+      <span class="badge-pixel amber">DIFFICULTY: INTERMEDIATE</span>
+    </div>
+
+    <!-- 5-Tab Workstation Navigation -->
+    <nav class="tab-nav" aria-label="Experiment Sections">
+      <button class="tab-btn active" data-tab="tab-theory">1. AIM & THEORY</button>
+      <button class="tab-btn" data-tab="tab-procedure">2. PROCEDURE</button>
+      <button class="tab-btn" data-tab="tab-sim">3. SIMULATOR</button>
+      <button class="tab-btn" data-tab="tab-analysis">4. ANALYSIS & VECTORS</button>
+      <button class="tab-btn" data-tab="tab-quiz">5. QUIZ & EVALUATION</button>
+    </nav>
+
+    <!-- Tab 1: Aim & Theory -->
+    <section id="tab-theory" class="tab-content active">
+      <div class="cyber-card" style="margin-bottom: 16px;">
+        <h3 style="font-family: var(--font-pixel); font-size: 0.95rem; margin-bottom: 8px;">1. AIM</h3>
+        <p style="font-size: 0.9rem; color: var(--text-secondary);">
+          [State the objective of this experiment, e.g. To simulate and understand the inner round functions of MD5/SHA-1/RSA...]
+        </p>
+      </div>
+
+      <div class="cyber-card" style="margin-bottom: 16px;">
+        <h3 style="font-family: var(--font-pixel); font-size: 0.95rem; margin-bottom: 8px;">2. OBJECTIVES</h3>
+        <ul style="padding-left: 20px; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.8;">
+          <li>[Objective 1: Understand key schedule/block padding]</li>
+          <li>[Objective 2: Visualize state transformations]</li>
+          <li>[Objective 3: Verify outputs against official RFC vectors]</li>
+        </ul>
+      </div>
+
+      <div class="cyber-card" style="margin-bottom: 16px;">
+        <h3 style="font-family: var(--font-pixel); font-size: 0.95rem; margin-bottom: 8px;">3. MATHEMATICAL FOUNDATION & WORKING</h3>
+        <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 12px;">
+          [Describe the cryptographic algorithm, equations, bitwise operations, or state matrices]
+        </p>
+        <div class="data-register">
+          [ Insert core mathematical formula or pseudocode step here ]
+        </div>
+      </div>
+
+      <div class="cyber-card">
+        <h3 style="font-family: var(--font-pixel); font-size: 0.95rem; margin-bottom: 8px;">4. REFERENCES</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">
+          [1. Standard RFC / NIST Document]<br>
+          [2. Textbook Reference]
+        </p>
+      </div>
+    </section>
+
+    <!-- Tab 2: Procedure -->
+    <section id="tab-procedure" class="tab-content">
+      <div class="cyber-card">
+        <h3 style="font-family: var(--font-pixel); font-size: 0.95rem; margin-bottom: 12px;">LABORATORY PROCEDURE</h3>
+        <ol style="padding-left: 20px; font-size: 0.88rem; color: var(--text-secondary); line-height: 2;">
+          <li>Navigate to the <strong>Simulator</strong> tab.</li>
+          <li>Enter plaintext message or key parameters in the input fields.</li>
+          <li>Step through the cryptographic transformation or click Execute.</li>
+          <li>Observe register state changes and final output.</li>
+          <li>Complete the assessment in the <strong>Quiz & Evaluation</strong> tab.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Tab 3: Interactive Simulation -->
+    <section id="tab-sim" class="tab-content">
+      <div class="cyber-card">
+        <div class="card-header">
+          <span style="font-family: var(--font-pixel); font-size: 0.9rem;">INTERACTIVE CRYPTOGRAPHIC WORKBENCH</span>
+          <div style="display: flex; gap: 8px;">
+            <button type="button" id="sim-run-btn" class="btn-cyber sm primary">EXECUTE</button>
+            <button type="button" id="sim-reset-btn" class="btn-cyber sm">RESET</button>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+          <div>
+            <label for="template-input" style="display: block; font-family: var(--font-pixel); font-size: 0.82rem; margin-bottom: 6px;">
+              INPUT DATA / MESSAGE:
+            </label>
+            <textarea id="template-input" class="input-cyber" rows="4">SAMPLE PLAINTEXT</textarea>
+          </div>
+          <div>
+            <label for="template-output" style="display: block; font-family: var(--font-pixel); font-size: 0.82rem; margin-bottom: 6px;">
+              GENERATED OUTPUT:
+            </label>
+            <textarea id="template-output" class="input-cyber data-register" rows="4" readonly></textarea>
+          </div>
+        </div>
+
+        <!-- Custom Visualizer Stage -->
+        <div class="visualizer-stage">
+          <h4 style="font-family: var(--font-pixel); font-size: 0.85rem; margin-bottom: 8px;">STATE / REGISTER VISUALIZER:</h4>
+          <p style="font-size: 0.82rem; color: var(--text-muted);">
+            [Group implements custom step-by-step state diagrams, bitwise register displays, or visual flow here]
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 4: Analysis & Vectors -->
+    <section id="tab-analysis" class="tab-content">
+      <div class="cyber-card" style="margin-bottom: 16px;">
+        <h3 style="font-family: var(--font-pixel); font-size: 0.95rem; margin-bottom: 8px;">CANONICAL BENCHMARK TEST VECTORS</h3>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 12px;">
+          Verify your implementation against standard RFC/NIST test vectors.
+        </p>
+        <div class="data-register">
+          Input: "abc"<br>
+          Expected Output: "[Canonical Digest/Ciphertext]"
+        </div>
+      </div>
+
+      <div class="cyber-card">
+        <h3 style="font-family: var(--font-pixel); font-size: 0.95rem; margin-bottom: 8px;">OBSERVATIONS & ANALYSIS</h3>
+        <p style="font-size: 0.85rem; color: var(--text-secondary);">
+          [Document the avalanche effect, computational complexity, and cryptographic strengths/weaknesses]
+        </p>
+      </div>
+    </section>
+
+    <!-- Tab 5: Quiz & Evaluation -->
+    <section id="tab-quiz" class="tab-content">
+      <div id="quiz-mount"></div>
+    </section>
+  </div>
+
+  <!-- Universal Scripts -->
+  <script src="../../core/js/lab-bridge.js"></script>
+  <script src="../../core/js/quiz-engine.js"></script>
+  <!-- Experiment Simulation Script -->
+  <script src="script.js"></script>
+</body>
+</html>

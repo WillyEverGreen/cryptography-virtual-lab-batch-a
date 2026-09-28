@@ -1,0 +1,24 @@
+{
+  "id": "md5",
+  "title": "MD5 Hash Algorithm",
+  "category": "Cryptographic Hash Functions",
+  "sectorId": "sector-hash",
+  "difficulty": "Intermediate",
+  "estimatedTimeMinutes": 20,
+  "authors": [
+    { "name": "Nicole Dabre", "rollNo": "10717" },
+    { "name": "Alciya Dodti", "rollNo": "10722" },
+    { "name": "Larissa Dabreo", "rollNo": "10718" },
+    { "name": "Ruth Dmello", "rollNo": "10721" }
+  ],
+  "summary": "512-bit block padding, non-linear round functions (F, G, H, I), and 128-bit message digest generation.",
+  "path": "experiments/md5/index.html",
+  "icon": "pixel-hash",
+  "prerequisites": ["Modular Addition (mod 2^32)", "Bitwise Logic"],
+  "testVectors": [
+    {
+      "input": "",
+      "expectedOutput": "d41d8cd98f00b204e9800998ecf8427e"
+    }
+  ]
+}

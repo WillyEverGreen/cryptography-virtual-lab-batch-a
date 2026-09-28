@@ -1,0 +1,174 @@
+/**
+ * ============================================================================
+ * CRYPTOGRAPHY VIRTUAL LAB — EXPERIMENT REGISTRY CLIENT
+ * Loads and searches experiment manifests and sector definitions
+ * ============================================================================
+ */
+
+(function (root, factory) {
+  if (typeof module === 'object' && module.exports) {
+    module.exports = factory();
+  } else {
+    root.LabRegistry = factory();
+  }
+}(typeof self !== 'undefined' ? self : this, function () {
+  'use strict';
+
+  let registryData = null;
+
+  const LabRegistry = {
+    init: async function (path = 'experiments/registry.json') {
+      try {
+        const response = await fetch(path);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        registryData = await response.json();
+        return registryData;
+      } catch (err) {
+        console.warn('Loading fallback registry for offline environment', err);
+        registryData = this.getFallbackRegistry();
+        return registryData;
+      }
+    },
+
+    getSectors: function () {
+      return registryData?.sectors || [];
+    },
+
+    getExperiments: function () {
+      return registryData?.experiments || [];
+    },
+
+    getExperimentById: function (id) {
+      if (!registryData) return null;
+      return registryData.experiments.find(exp => exp.id === id) || null;
+    },
+
+    getExperimentsBySector: function (sectorId) {
+      if (!registryData) return [];
+      return registryData.experiments.filter(exp => exp.sectorId === sectorId);
+    },
+
+    getFallbackRegistry: function () {
+      return {
+        version: "1.0.0",
+        labTitle: "Cryptography Virtual Laboratory",
+        sectors: [
+          {
+            id: "sector-classic",
+            name: "Reference Sector",
+            description: "Foundational cipher mechanics and reference implementation",
+            icon: "📜",
+            badge: "REFERENCE"
+          },
+          {
+            id: "sector-hash",
+            name: "Cryptographic Hash Functions",
+            description: "One-way compression, block padding, and message digests",
+            icon: "⚡",
+            badge: "SECTOR 01"
+          },
+          {
+            id: "sector-auth",
+            name: "Message Authentication Codes",
+            description: "Symmetric keyed authentication, CBC-MAC, and HMAC (RFC 2104)",
+            icon: "🛡️",
+            badge: "SECTOR 02"
+          },
+          {
+            id: "sector-network",
+            name: "Secure Transport Protocols",
+            description: "SSL/TLS handshake protocol, cipher suites, and session security",
+            icon: "🌐",
+            badge: "SECTOR 03"
+          }
+        ],
+        experiments: [
+          {
+            id: "caesar-cipher",
+            title: "Caesar Cipher & Frequency Analysis",
+            sectorId: "sector-classic",
+            difficulty: "Novice",
+            path: "experiments/caesar-cipher/index.html",
+            description: "Golden reference module: shift wheel simulation, brute-force cracker, and letter frequency distribution.",
+            status: "active"
+          },
+          {
+            id: "md5",
+            title: "MD5 Hash Algorithm",
+            sectorId: "sector-hash",
+            difficulty: "Intermediate",
+            path: "experiments/md5/index.html",
+            description: "512-bit block padding, non-linear round functions (F, G, H, I), and 128-bit message digest generation.",
+            authors: [
+              { name: "Nicole Dabre", rollNo: "10717" },
+              { name: "Alciya Dodti", rollNo: "10722" },
+              { name: "Larissa Dabreo", rollNo: "10718" },
+              { name: "Ruth Dmello", rollNo: "10721" }
+            ],
+            status: "assigned"
+          },
+          {
+            id: "sha1",
+            title: "SHA-1 Hash Algorithm",
+            sectorId: "sector-hash",
+            difficulty: "Intermediate",
+            path: "experiments/sha1/index.html",
+            description: "160-bit message digest computation with circular bitwise shifts and message schedule expansion across 80 rounds.",
+            authors: [
+              { name: "Swar", rollNo: "10713" },
+              { name: "Tanush Chavan", rollNo: "10710" },
+              { name: "Aaron Deniz", rollNo: "10719" },
+              { name: "Asher", rollNo: "10715" }
+            ],
+            status: "assigned"
+          },
+          {
+            id: "mac",
+            title: "Message Authentication Code (MAC)",
+            sectorId: "sector-auth",
+            difficulty: "Intermediate",
+            path: "experiments/mac/index.html",
+            description: "Symmetric key authentication, CBC-MAC construction, tag generation, and message tamper verification.",
+            authors: [
+              { name: "Aarna Chopdekar", rollNo: "10712" },
+              { name: "Slora Bar", rollNo: "10708" },
+              { name: "Arya Chavan", rollNo: "10709" },
+              { name: "Cajetan Dsouza", rollNo: "10723" },
+              { name: "Shreyas Divekar", rollNo: "10720" }
+            ],
+            status: "assigned"
+          },
+          {
+            id: "hmac",
+            title: "HMAC (Keyed-Hash Message Auth)",
+            sectorId: "sector-auth",
+            difficulty: "Intermediate",
+            path: "experiments/hmac/index.html",
+            description: "RFC 2104 standard: inner and outer key padding (ipad/opad), cryptographic hashing, and signature validation.",
+            authors: [
+              { name: "Jadern Crasto", rollNo: "10716" },
+              { name: "Wendell Dsouza", rollNo: "10724" },
+              { name: "Rohit Ahir", rollNo: "10706" }
+            ],
+            status: "assigned"
+          },
+          {
+            id: "ssl-tls",
+            title: "SSL / TLS Handshake Protocol",
+            sectorId: "sector-network",
+            difficulty: "Advanced",
+            path: "experiments/ssl-tls/index.html",
+            description: "ClientHello, ServerHello, certificate validation, pre-master secret key exchange, and secure channel session keys.",
+            authors: [
+              { name: "Jace Jaison", rollNo: "10711" },
+              { name: "Ahamed Wafiq", rollNo: "10705" }
+            ],
+            status: "assigned"
+          }
+        ]
+      };
+    }
+  };
+
+  return LabRegistry;
+}));

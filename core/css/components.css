@@ -1,0 +1,204 @@
+/* ==========================================================================
+   CRYPTOGRAPHY VIRTUAL LAB — COMPONENTS KIT
+   Clean, modern, crisp styling for buttons, cards, badges, and tabs
+   ========================================================================== */
+
+/* --- Buttons --- */
+.btn-cyber {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 7px 14px;
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: var(--border-pixel-sm);
+  box-shadow: var(--pixel-shadow-sm);
+  cursor: pointer;
+  user-select: none;
+  border-radius: 4px;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.btn-cyber:hover {
+  background-color: var(--bg-surface-elevated);
+  transform: translateY(-1px);
+  box-shadow: var(--pixel-shadow-md);
+}
+
+.btn-cyber:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+.btn-cyber.primary {
+  background-color: var(--cyber-cyan);
+  color: #ffffff;
+  border-color: var(--cyber-cyan-dim);
+}
+
+.btn-cyber.primary:hover {
+  background-color: var(--cyber-cyan-dim);
+}
+
+.btn-cyber.success {
+  background-color: var(--cyber-green);
+  color: #ffffff;
+  border-color: var(--cyber-green-dim);
+}
+
+.btn-cyber.amber {
+  background-color: var(--cyber-amber);
+  color: #ffffff;
+  border-color: var(--cyber-amber);
+}
+
+.btn-cyber.sm {
+  padding: 4px 10px;
+  font-size: 0.78rem;
+  gap: 6px;
+}
+
+/* --- Refined Badges --- */
+.badge-pixel {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 4px;
+  border: 1px solid var(--border-medium);
+  background-color: var(--bg-surface-elevated);
+  color: var(--text-secondary);
+}
+
+.badge-pixel.cyan {
+  background-color: rgba(2, 132, 199, 0.1);
+  color: var(--cyber-cyan);
+  border-color: var(--cyber-cyan);
+}
+
+.badge-pixel.green {
+  background-color: rgba(22, 163, 74, 0.1);
+  color: var(--cyber-green);
+  border-color: var(--cyber-green);
+}
+
+.badge-pixel.amber {
+  background-color: rgba(217, 119, 6, 0.1);
+  color: var(--cyber-amber);
+  border-color: var(--cyber-amber);
+}
+
+/* --- Clean Cards --- */
+.cyber-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-dim);
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  padding: var(--space-md);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+[data-theme="dark"] .cyber-card {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.cyber-card:hover {
+  border-color: var(--border-medium);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] .cyber-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-dim);
+  padding-bottom: var(--space-xs);
+  margin-bottom: var(--space-sm);
+}
+
+/* --- Data & Bit Register Panels --- */
+.data-register {
+  background-color: var(--bg-surface-elevated);
+  border: 1px solid var(--border-dim);
+  border-radius: 4px;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  padding: 10px 14px;
+  word-break: break-all;
+  border-left: 3px solid var(--cyber-cyan);
+}
+
+/* --- Inputs & Form Elements --- */
+.input-cyber {
+  width: 100%;
+  padding: 9px 12px;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-medium);
+  border-radius: 4px;
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.input-cyber:focus {
+  border-color: var(--cyber-cyan);
+  box-shadow: 0 0 0 2px var(--cyber-cyan-glow);
+}
+
+/* --- 5-Tab Navigation Bar --- */
+.tab-nav {
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--border-dim);
+  background-color: var(--bg-surface-elevated);
+  padding: 6px 8px 0;
+  border-radius: 6px 6px 0 0;
+  overflow-x: auto;
+}
+
+.tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  background: transparent;
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.tab-btn:hover {
+  color: var(--text-primary);
+  background-color: var(--bg-surface-hover);
+}
+
+.tab-btn.active {
+  background-color: var(--bg-surface);
+  color: var(--cyber-cyan);
+  border-color: var(--border-dim);
+  margin-bottom: -1px;
+  border-bottom: 2px solid var(--cyber-cyan);
+  font-weight: 700;
+}

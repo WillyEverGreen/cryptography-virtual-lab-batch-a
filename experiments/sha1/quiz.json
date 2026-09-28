@@ -1,0 +1,38 @@
+[
+  {
+    "id": "sha1-q1",
+    "question": "What is the output message digest size produced by the SHA-1 algorithm?",
+    "options": [
+      "160 bits (20 bytes)",
+      "128 bits (16 bytes)",
+      "256 bits (32 bytes)",
+      "512 bits (64 bytes)"
+    ],
+    "correctIndex": 0,
+    "explanation": "SHA-1 produces a 160-bit (20-byte) message digest, typically represented as a 40-character hexadecimal string."
+  },
+  {
+    "id": "sha1-q2",
+    "question": "How many total rounds and 32-bit words are generated in the expanded message schedule W[0..79] in SHA-1?",
+    "options": [
+      "80 rounds across 4 logical stages of 20 rounds each",
+      "64 rounds across 4 logical stages",
+      "512 rounds total",
+      "16 rounds total"
+    ],
+    "correctIndex": 0,
+    "explanation": "SHA-1 expands each 16-word (512-bit) block into an 80-word array (W[0..79]), processing them across 80 round iterations using five 32-bit registers (A, B, C, D, E)."
+  },
+  {
+    "id": "sha1-q3",
+    "question": "What landmark attack in 2017 practically produced the first SHA-1 collision between two distinct PDF files?",
+    "options": [
+      "SHAttered (CWI Amsterdam and Google)",
+      "Heartbleed",
+      "POODLE",
+      "Spectre"
+    ],
+    "correctIndex": 0,
+    "explanation": "In 2017, the SHAttered team generated two PDF files with different content but the identical SHA-1 hash, establishing practical collision vulnerability."
+  }
+]

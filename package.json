@@ -1,0 +1,12 @@
+{
+  "name": "cryptography-virtual-lab",
+  "version": "1.0.0",
+  "description": "Unified 16-Bit Cybernetic Cryptography Virtual Laboratory",
+  "main": "index.html",
+  "scripts": {
+    "test": "node tools/validate-experiment.js caesar-cipher",
+    "validate": "node tools/validate-experiment.js"
+  },
+  "author": "Integration Compilation Team",
+  "license": "MIT"
+}

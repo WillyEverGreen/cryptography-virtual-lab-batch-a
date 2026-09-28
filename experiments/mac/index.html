@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experiment: Message Authentication Code (MAC)</title>
+  <link rel="stylesheet" href="../../core/css/design-tokens.css">
+  <link rel="stylesheet" href="../../core/css/cyber-retro.css">
+  <link rel="stylesheet" href="../../core/css/components.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="cartridge-wrapper">
+    <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid var(--border-dark); padding-bottom: 12px; margin-bottom: 16px;">
+      <div>
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+          <span class="badge-pixel cyan">SECTOR 02: MESSAGE AUTHENTICATION</span>
+          <span class="badge-pixel">EXP-ID: MAC-03</span>
+        </div>
+        <h1 style="font-family: var(--font-pixel); font-size: 1.25rem; margin: 0;">MESSAGE AUTHENTICATION CODE (MAC)</h1>
+      </div>
+      <span class="badge-pixel amber">DIFFICULTY: INTERMEDIATE</span>
+    </div>
+
+    <!-- 5-Tab Navigation -->
+    <nav class="tab-nav" aria-label="Experiment Sections">
+      <button class="tab-btn active" data-tab="tab-theory">1. AIM & THEORY</button>
+      <button class="tab-btn" data-tab="tab-procedure">2. PROCEDURE</button>
+      <button class="tab-btn" data-tab="tab-sim">3. SIMULATOR</button>
+      <button class="tab-btn" data-tab="tab-analysis">4. ANALYSIS & VECTORS</button>
+      <button class="tab-btn" data-tab="tab-quiz">5. QUIZ & EVALUATION</button>
+    </nav>
+
+    <!-- Tab 1: Aim & Theory -->
+    <section id="tab-theory" class="tab-content active">
+      <div class="cyber-card" style="margin-bottom: 16px;">
+        <h3 style="font-family: var(--font-pixel); font-size: 0.95rem; margin-bottom: 8px;">1. AIM</h3>
+        <p style="font-size: 0.9rem; color: var(--text-secondary);">
+          To study the construction and application of Message Authentication Codes (MAC), evaluate symmetric keyed data integrity, and simulate real-time message tampering detection.
+        </p>
+      </div>
+
+      <div class="cyber-card" style="margin-bottom: 16px;">
+        <h3 style="font-family: var(--font-pixel); font-size: 0.95rem; margin-bottom: 8px;">2. OBJECTIVES</h3>
+        <ul style="padding-left: 20px; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.8;">
+          <li>[Group 3 TODO: Add measurable learning objectives]</li>
+        </ul>
+      </div>
+
+      <div class="cyber-card">
+        <h3 style="font-family: var(--font-pixel); font-size: 0.95rem; margin-bottom: 8px;">3. REFERENCES</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">
+          1. Stallings, W. (2017). <em>Cryptography and Network Security</em> (7th ed.).
+        </p>
+      </div>
+    </section>
+
+    <!-- Tab 2: Procedure -->
+    <section id="tab-procedure" class="tab-content">
+      <div class="cyber-card">
+        <h3 style="font-family: var(--font-pixel); font-size: 0.95rem; margin-bottom: 12px;">LABORATORY EXPERIMENT PROCEDURE</h3>
+        <ol style="padding-left: 20px; font-size: 0.88rem; color: var(--text-secondary); line-height: 2;">
+          <li>Switch to the <strong>Simulator</strong> tab.</li>
+          <li>[Group 3 TODO: Document your experiment steps here]</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Tab 3: Interactive Simulation -->
+    <section id="tab-sim" class="tab-content">
+      <div class="cyber-card" style="margin-bottom: 16px;">
+        <div class="card-header">
+          <span style="font-family: var(--font-pixel); font-size: 0.9rem;">INTERACTIVE MAC WORKBENCH & TAMPER LAB</span>
+          <button type="button" id="mac-reset-btn" class="btn-cyber sm">RESET</button>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 12px; margin-bottom: 16px;">
+          <div>
+            <label for="mac-msg-input" style="display: block; font-family: var(--font-pixel); font-size: 0.82rem; margin-bottom: 6px;">
+              SENDER'S ORIGINAL MESSAGE (M):
+            </label>
+            <input type="text" id="mac-msg-input" class="input-cyber" value="TRANSFER $500 TO BOB">
+          </div>
+          <div>
+            <label for="mac-key-input" style="display: block; font-family: var(--font-pixel); font-size: 0.82rem; margin-bottom: 6px;">
+              SHARED SECRET KEY (K):
+            </label>
+            <input type="text" id="mac-key-input" class="input-cyber" value="SHARED_SECRET_KEY">
+          </div>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <label for="mac-tag-output" style="display: block; font-family: var(--font-pixel); font-size: 0.82rem; margin-bottom: 6px;">
+            COMPUTED AUTHENTICATION TAG: MAC(K, M)
+          </label>
+          <input type="text" id="mac-tag-output" class="input-cyber data-register" readonly>
+        </div>
+
+        <!-- Tampering Simulation Stage -->
+        <div class="tamper-panel">
+          <div style="flex: 1;">
+            <label for="mac-tamper-input" style="display: block; font-family: var(--font-pixel); font-size: 0.82rem; margin-bottom: 4px;">
+              RECEIVER'S CHANNEL (TEST TAMPERING HERE):
+            </label>
+            <input type="text" id="mac-tamper-input" class="input-cyber" value="TRANSFER $500 TO BOB">
+          </div>
+        </div>
+
+        <div id="mac-verify-result" style="padding: 10px; background: var(--bg-surface-elevated); border: 1px solid var(--border-medium); font-family: var(--font-mono); font-size: 0.85rem;">
+          <!-- Group 3: render verification status here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 4: Analysis & Vectors -->
+    <section id="tab-analysis" class="tab-content">
+      <div class="cyber-card">
+        <h3 style="font-family: var(--font-pixel); font-size: 0.95rem; margin-bottom: 8px;">SECURITY PROPERTIES & OBSERVATIONS</h3>
+        <p style="font-size: 0.85rem; color: var(--text-secondary);">
+          [Group 3 TODO: Document existential unforgeability and observations on tamper evidence]
+        </p>
+      </div>
+    </section>
+
+    <!-- Tab 5: Quiz & Evaluation -->
+    <section id="tab-quiz" class="tab-content">
+      <div id="quiz-mount"></div>
+    </section>
+  </div>
+
+  <script src="../../core/js/lab-bridge.js"></script>
+  <script src="../../core/js/quiz-engine.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

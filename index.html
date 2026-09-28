@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cryptography Virtual Laboratory — Research Terminal</title>
+  
+  <!-- Core Design System Tokens & Components -->
+  <link rel="stylesheet" href="core/css/design-tokens.css">
+  <link rel="stylesheet" href="core/css/cyber-retro.css">
+  <link rel="stylesheet" href="core/css/components.css">
+  <link rel="stylesheet" href="core/css/shell.css">
+</head>
+<body>
+  <!-- CRT Scanline Overlay (Toggleable via HUD) -->
+  <div class="scanlines" id="scanlines-layer" aria-hidden="true"></div>
+
+  <!-- Master App Shell -->
+  <div id="app-shell">
+    
+    <!-- Modern HUD Header -->
+    <header class="hud-header">
+      <div class="hud-top-bar">
+        <!-- Brand & System Telemetry -->
+        <a href="#/" class="brand-section" title="Return to Crypto World Map">
+          <div class="brand-icon" id="brand-icon-mount">
+            <!-- Rendered by LabIcons -->
+            <svg class="icon-svg" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          </div>
+          <div class="brand-text">
+            <h1>CRYPTO VIRTUAL LAB<span class="terminal-cursor"></span></h1>
+            <p>INTEGRATED RESEARCH TERMINAL // SEC-OPS</p>
+          </div>
+        </a>
+
+        <!-- Main Navigation Links -->
+        <nav aria-label="Main Navigation">
+          <ul class="nav-links">
+            <li>
+              <a href="#/" class="nav-link active" id="nav-link-map">
+                <svg class="icon-svg" viewBox="0 0 24 24"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
+                <span>WORLD MAP</span>
+              </a>
+            </li>
+            <li>
+              <a href="#/experiments" class="nav-link" id="nav-link-catalog">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                <span>EXPERIMENTS</span>
+              </a>
+            </li>
+            <li>
+              <a href="#/instructions" class="nav-link" id="nav-link-instructions">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                <span>INSTRUCTIONS</span>
+              </a>
+            </li>
+            <li>
+              <a href="#/about" class="nav-link" id="nav-link-about">
+                <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                <span>ABOUT LAB</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Player Telemetry & HUD Audio/Visual Controls -->
+        <div class="hud-telemetry">
+          <button type="button" id="hud-theme-toggle" class="btn-cyber sm" title="Toggle Light / Dark Mode">
+            <span id="theme-icon-container"></span>
+            <span id="theme-text">DARK</span>
+          </button>
+          <button type="button" id="hud-sound-toggle" class="btn-cyber sm" title="Toggle Sound Effects">
+            <span id="sound-icon-container"></span>
+            <span id="sound-text">SFX: ON</span>
+          </button>
+          <button type="button" id="hud-crt-toggle" class="btn-cyber sm" title="Toggle CRT scanline filter">
+            <svg class="icon-svg sm" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+            <span>CRT: OFF</span>
+          </button>
+          <div class="dossier-pill" id="dossier-pill" title="Player Clearance Status">
+            <span class="status-led green"></span>
+            <span>XP: <strong id="hud-xp-val" style="color: var(--cyber-cyan);">0</strong></span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Viewport (Dynamically Switched by Hash Router) -->
+    <main class="main-viewport" id="main-viewport">
+      
+      <!-- VIEW 1: 2D CRYPTO WORLD MAP -->
+      <section id="view-map" class="view-panel active">
+        <div class="world-map-wrapper">
+          <div class="map-toolbar">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span class="status-led cyan"></span>
+              <span style="font-size: 0.95rem; font-weight: 700; color: var(--text-bright);">CRYPTOGRAPHY SECTOR WORLD MAP</span>
+            </div>
+            <span class="badge-pixel cyan" id="map-cleared-count">0 / 6 MODULES CLEARED</span>
+          </div>
+          <div class="map-canvas-container" id="map-canvas-container">
+            <!-- Dynamically populated by LabMapRenderer -->
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 2: EXPERIMENT CATALOG (LIST & SEARCH) -->
+      <section id="view-experiments" class="view-panel">
+        <div class="cyber-card" style="margin-bottom: 20px;">
+          <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center; justify-content: space-between;">
+            <div style="flex: 1; min-width: 260px;">
+              <input type="text" id="catalog-search-input" class="input-cyber" placeholder="Search experiments (e.g. MD5, SHA-1, MAC, HMAC, TLS)...">
+            </div>
+            <div style="display: flex; gap: 6px; flex-wrap: wrap;" id="catalog-sector-filters">
+              <button type="button" class="btn-cyber sm primary filter-btn" data-sector="all">ALL SECTORS</button>
+              <button type="button" class="btn-cyber sm filter-btn" data-sector="sector-hash">HASH FUNCTIONS</button>
+              <button type="button" class="btn-cyber sm filter-btn" data-sector="sector-auth">MAC / HMAC</button>
+              <button type="button" class="btn-cyber sm filter-btn" data-sector="sector-network">SSL / TLS</button>
+              <button type="button" class="btn-cyber sm filter-btn" data-sector="sector-classic">REFERENCE</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="catalog-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px;">
+          <!-- Dynamically populated by LabMapRenderer.renderCatalog -->
+        </div>
+      </section>
+
+      <!-- VIEW 3: CARTRIDGE VIEWPORT (IFRAME TERMINAL DECK) -->
+      <section id="view-cartridge" class="view-panel">
+        <div class="cartridge-frame-container">
+          <div class="cartridge-hud-bar">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <a href="#/map" class="btn-cyber sm" id="cartridge-back-btn">
+                <svg class="icon-svg sm" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                <span>BACK TO MAP</span>
+              </a>
+              <span id="cartridge-active-title" style="font-size: 0.95rem; font-weight: 700; color: var(--text-bright);">
+                EXPERIMENT MODULE TERMINAL
+              </span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <button type="button" id="cartridge-reload-btn" class="btn-cyber sm" title="Reload Cartridge">
+                <svg class="icon-svg sm" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                <span>RELOAD</span>
+              </button>
+              <button type="button" id="cartridge-fullscreen-btn" class="btn-cyber sm" title="Toggle Fullscreen">
+                <svg class="icon-svg sm" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+                <span>FULLSCREEN</span>
+              </button>
+            </div>
+          </div>
+          <!-- Sandboxed Iframe Isolation Container -->
+          <iframe id="cartridge-iframe" class="cartridge-iframe" title="Active Experiment Module" src="about:blank"></iframe>
+        </div>
+      </section>
+
+      <!-- VIEW 4: INSTRUCTIONS & LAB HANDBOOK -->
+      <section id="view-instructions" class="view-panel">
+        <div class="cyber-card" style="margin-bottom: 20px;">
+          <h2 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 12px; color: var(--text-bright);">LABORATORY OPERATING HANDBOOK</h2>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 16px;">
+            Welcome to the Cryptography Virtual Laboratory. This platform provides an interactive, hands-on environment for exploring mathematical cryptosystems, cipher mechanics, and cryptographic attack surfaces.
+          </p>
+          
+          <h3 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; color: var(--cyber-cyan);">HOW TO COMPLETE AN EXPERIMENT:</h3>
+          <ol style="padding-left: 20px; font-size: 0.88rem; color: var(--text-secondary); line-height: 2;">
+            <li><strong>Select an Experiment</strong>: Choose an active node from the World Map or Catalog.</li>
+            <li><strong>Review Theory & Procedure</strong>: Read the mathematical formulations and operational guidelines.</li>
+            <li><strong>Interact with the Simulator</strong>: Modify keys, alter plaintexts, test block padding, or step through state rounds.</li>
+            <li><strong>Validate Test Cases</strong>: Check your outputs against standard RFC/NIST test vectors.</li>
+            <li><strong>Complete Concept Quiz</strong>: Answer the evaluation questions to clear the sector and earn clearance XP.</li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- VIEW 5: ABOUT VIRTUAL LAB -->
+      <section id="view-about" class="view-panel">
+        <div class="cyber-card" style="margin-bottom: 20px;">
+          <h2 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 12px; color: var(--text-bright);">ABOUT CRYPTOGRAPHY VIRTUAL LAB</h2>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 16px;">
+            Developed as an integrated college compilation project. Built on the <strong>Hub & Cartridge Architecture</strong>, enabling multiple independent student groups to build self-contained cryptographic modules that integrate into one seamless platform.
+          </p>
+
+          <h3 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; color: var(--cyber-cyan);">ARCHITECTURAL PILLARS:</h3>
+          <ul style="padding-left: 20px; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.9;">
+            <li><strong>Zero Collision Sandboxing</strong>: Each experiment module executes in its own isolated scope without CSS or global JS pollution.</li>
+            <li><strong>Unified Design System</strong>: Clean minimal white & pitch-black dark mode across all modules.</li>
+            <li><strong>Standard 15-Section Contract</strong>: Aim, Objectives, Theory, Procedure, Simulation, Analysis, Canonical Vectors, and Quiz.</li>
+            <li><strong>Offline Capable</strong>: Completely zero-dependency; functions without external internet connections or CDNs.</li>
+          </ul>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Clean Modern Footer -->
+    <footer class="cyber-footer">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span class="status-led green"></span>
+        <span style="font-family: var(--font-mono); font-size: 0.78rem;">PLATFORM CORE: OPERATIONAL // INTEGRATION STABLE</span>
+      </div>
+      <div style="font-size: 0.78rem; font-weight: 500;">
+        CRYPTOGRAPHY VIRTUAL LAB &copy; 2026 // COMPILATION TEAM
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Core Platform Logic Scripts -->
+  <script src="core/js/icons.js"></script>
+  <script src="core/js/lab-bridge.js"></script>
+  <script src="core/js/gamification.js"></script>
+  <script src="core/js/registry.js"></script>
+  <script src="core/js/map-renderer.js"></script>
+  <script src="core/js/quiz-engine.js"></script>
+  <script src="core/js/router.js"></script>
+
+  <!-- Shell Main Initialization Script -->
+  <script>
+    (async function () {
+      'use strict';
+
+      // Load Registry
+      const registry = await LabRegistry.init();
+      const sectors = LabRegistry.getSectors();
+      const experiments = LabRegistry.getExperiments();
+
+      // UI View Elements
+      const viewPanels = {
+        '#/': document.getElementById('view-map'),
+        '#/map': document.getElementById('view-map'),
+        '#/experiments': document.getElementById('view-experiments'),
+        '#/instructions': document.getElementById('view-instructions'),
+        '#/about': document.getElementById('view-about'),
+        '#/experiment': document.getElementById('view-cartridge')
+      };
+
+      const mapContainer = document.getElementById('map-canvas-container');
+      const catalogGrid = document.getElementById('catalog-grid');
+      const cartridgeIframe = document.getElementById('cartridge-iframe');
+      const cartridgeTitle = document.getElementById('cartridge-active-title');
+      const xpDisplay = document.getElementById('hud-xp-val');
+      const clearedBadge = document.getElementById('map-cleared-count');
+
+      // Update Telemetry Header
+      function updateTelemetry() {
+        const state = LabGamification.getState();
+        if (xpDisplay) xpDisplay.textContent = state.xp || 0;
+        const clearedCount = Object.keys(state.clearedExperiments || {}).length;
+        if (clearedBadge) clearedBadge.textContent = `${clearedCount} / ${experiments.length} MODULES CLEARED`;
+      }
+
+      window.addEventListener('lab_state_changed', updateTelemetry);
+      updateTelemetry();
+
+      // Theme Management (Minimal White vs Pitch Black)
+      const themeBtn = document.getElementById('hud-theme-toggle');
+      const themeIconContainer = document.getElementById('theme-icon-container');
+      const themeText = document.getElementById('theme-text');
+      let currentTheme = localStorage.getItem('crypto_lab_theme') || 'light';
+
+      function applyTheme(theme) {
+        currentTheme = theme;
+        document.documentElement.setAttribute('data-theme', theme);
+        document.body.classList.toggle('theme-dark', theme === 'dark');
+
+        if (themeIconContainer && themeText) {
+          if (theme === 'dark') {
+            themeIconContainer.innerHTML = LabIcons.get('sun', 'sm');
+            themeText.textContent = 'LIGHT';
+          } else {
+            themeIconContainer.innerHTML = LabIcons.get('moon', 'sm');
+            themeText.textContent = 'DARK';
+          }
+        }
+
+        try { localStorage.setItem('crypto_lab_theme', theme); } catch (e) {}
+
+        if (cartridgeIframe) {
+          LabBridge.emitToCartridge(cartridgeIframe, LabBridge.EVENTS.THEME_CHANGE, { theme });
+        }
+      }
+
+      applyTheme(currentTheme);
+
+      themeBtn?.addEventListener('click', () => {
+        const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        applyTheme(nextTheme);
+        LabGamification.play('click');
+      });
+
+      cartridgeIframe?.addEventListener('load', () => {
+        LabBridge.emitToCartridge(cartridgeIframe, LabBridge.EVENTS.THEME_CHANGE, { theme: currentTheme });
+      });
+
+      // Audio Toggle Button
+      const soundBtn = document.getElementById('hud-sound-toggle');
+      const soundIconContainer = document.getElementById('sound-icon-container');
+      const soundText = document.getElementById('sound-text');
+
+      function updateSoundUI(isActive) {
+        if (soundIconContainer && soundText) {
+          soundIconContainer.innerHTML = LabIcons.get(isActive ? 'volume2' : 'volumeX', 'sm');
+          soundText.textContent = isActive ? 'SFX: ON' : 'SFX: OFF';
+        }
+      }
+
+      updateSoundUI(LabGamification.isSoundActive());
+
+      soundBtn?.addEventListener('click', () => {
+        const active = LabGamification.toggleSound();
+        updateSoundUI(active);
+      });
+
+      // CRT Scanlines Toggle
+      const crtBtn = document.getElementById('hud-crt-toggle');
+      let crtActive = false;
+      crtBtn?.addEventListener('click', () => {
+        crtActive = !crtActive;
+        document.body.classList.toggle('scanlines-active', crtActive);
+        crtBtn.querySelector('span').textContent = crtActive ? 'CRT: ON' : 'CRT: OFF';
+        LabGamification.play('click');
+      });
+
+      // Cartridge Controls
+      document.getElementById('cartridge-reload-btn')?.addEventListener('click', () => {
+        if (cartridgeIframe) cartridgeIframe.src = cartridgeIframe.src;
+        LabGamification.play('click');
+      });
+
+      document.getElementById('cartridge-fullscreen-btn')?.addEventListener('click', () => {
+        const container = document.querySelector('.cartridge-frame-container');
+        if (container) {
+          if (!document.fullscreenElement) {
+            container.requestFullscreen().catch(err => console.warn(err));
+          } else {
+            document.exitFullscreen();
+          }
+        }
+      });
+
+      // View Switcher Helper
+      function switchView(targetPanelKey) {
+        Object.values(viewPanels).forEach(panel => {
+          if (panel) panel.classList.remove('active');
+        });
+
+        const activePanel = viewPanels[targetPanelKey];
+        if (activePanel) {
+          activePanel.classList.add('active');
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // Catalog Search and Filter
+      let currentSearch = '';
+      let currentSector = 'all';
+
+      function refreshCatalog() {
+        LabMapRenderer.renderCatalog(catalogGrid, experiments, LabGamification.getState(), currentSearch, currentSector);
+      }
+
+      document.getElementById('catalog-search-input')?.addEventListener('input', (e) => {
+        currentSearch = e.target.value;
+        refreshCatalog();
+      });
+
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterButtons.forEach(b => b.classList.remove('primary'));
+          btn.classList.add('primary');
+          currentSector = btn.getAttribute('data-sector');
+          refreshCatalog();
+          LabGamification.play('click');
+        });
+      });
+
+      // Register Routes
+      LabRouter.register('#/', () => {
+        switchView('#/');
+        LabMapRenderer.renderWorldMap(mapContainer, sectors, experiments, LabGamification.getState());
+      });
+
+      LabRouter.register('#/map', () => {
+        switchView('#/');
+        LabMapRenderer.renderWorldMap(mapContainer, sectors, experiments, LabGamification.getState());
+      });
+
+      LabRouter.register('#/experiments', () => {
+        switchView('#/experiments');
+        refreshCatalog();
+      });
+
+      LabRouter.register('#/instructions', () => {
+        switchView('#/instructions');
+      });
+
+      LabRouter.register('#/about', () => {
+        switchView('#/about');
+      });
+
+      // Dynamic Experiment Route: #/experiment/:id
+      LabRouter.register('#/experiment/:id', (params) => {
+        switchView('#/experiment');
+        const expId = params.id;
+        const exp = LabRegistry.getExperimentById(expId);
+
+        if (exp) {
+          cartridgeTitle.textContent = `EXPERIMENT: ${exp.title.toUpperCase()}`;
+          cartridgeIframe.src = exp.path;
+        } else {
+          cartridgeTitle.textContent = 'EXPERIMENT NOT FOUND';
+          cartridgeIframe.src = 'about:blank';
+        }
+      });
+
+      // Listen for events from Cartridge via LabBridge
+      LabBridge.on(LabBridge.EVENTS.LEVEL_COMPLETED, (payload) => {
+        if (payload?.experimentId) {
+          LabGamification.markExperimentCleared(payload.experimentId, payload.score || 100);
+          updateTelemetry();
+        }
+      });
+
+      LabBridge.on(LabBridge.EVENTS.PLAY_SOUND, (payload) => {
+        LabGamification.play(payload?.sound || 'click');
+      });
+
+      // Start Router
+      LabRouter.init();
+    })();
+  </script>
+</body>
+</html>

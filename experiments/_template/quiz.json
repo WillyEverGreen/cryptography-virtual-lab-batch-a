@@ -1,0 +1,26 @@
+[
+  {
+    "id": "q1",
+    "question": "What is the primary cryptographic purpose of this algorithm?",
+    "options": [
+      "Confidentiality / Encryption",
+      "Integrity / Hashing",
+      "Authentication / Key Exchange",
+      "Compression"
+    ],
+    "correctIndex": 0,
+    "explanation": "Provide a clear mathematical or conceptual explanation of why this option is correct."
+  },
+  {
+    "id": "q2",
+    "question": "What is the standard key length or block size of this algorithm?",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctIndex": 1,
+    "explanation": "Reference the relevant standard (RFC/NIST) for this parameter."
+  }
+]

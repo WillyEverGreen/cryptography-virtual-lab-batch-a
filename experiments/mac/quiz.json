@@ -1,0 +1,38 @@
+[
+  {
+    "id": "mac-q1",
+    "question": "What two core security services are provided by a Message Authentication Code (MAC)?",
+    "options": [
+      "Message Integrity and Data Origin Authentication",
+      "Confidentiality and Non-repudiation",
+      "Public key distribution and compression",
+      "Anonymity and key escrow"
+    ],
+    "correctIndex": 0,
+    "explanation": "A MAC ensures that a message has not been altered in transit (integrity) and confirms that it originated from a party holding the shared secret key (authenticity)."
+  },
+  {
+    "id": "mac-q2",
+    "question": "Why does a MAC NOT provide non-repudiation (unlike a digital signature)?",
+    "options": [
+      "Because both sender and receiver share the same symmetric secret key, meaning either party could have created the tag",
+      "Because MACs are unkeyed",
+      "Because MAC digests are too short",
+      "Because MACs use asymmetric RSA math"
+    ],
+    "correctIndex": 0,
+    "explanation": "Since the secret key K is symmetric and shared by both parties, the recipient cannot prove to a third party (arbitrator) that the sender created the MAC rather than themselves."
+  },
+  {
+    "id": "mac-q3",
+    "question": "In CBC-MAC, which block's ciphertext output is utilized as the final authentication tag?",
+    "options": [
+      "The ciphertext output of the very last block",
+      "The first block",
+      "The XOR sum of all keys",
+      "The initialization vector"
+    ],
+    "correctIndex": 0,
+    "explanation": "In CBC-MAC, each block is XORed with the preceding block's ciphertext before encryption; the final block's encrypted output represents the authentication tag."
+  }
+]

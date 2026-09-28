@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experiment: SHA-1 Hash Algorithm</title>
+  <link rel="stylesheet" href="../../core/css/design-tokens.css">
+  <link rel="stylesheet" href="../../core/css/cyber-retro.css">
+  <link rel="stylesheet" href="../../core/css/components.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="cartridge-wrapper">
+    <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid var(--border-dark); padding-bottom: 12px; margin-bottom: 16px;">
+      <div>
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+          <span class="badge-pixel cyan">SECTOR 01: HASH FUNCTIONS</span>
+          <span class="badge-pixel">EXP-ID: SHA1-02</span>
+        </div>
+        <h1 style="font-family: var(--font-pixel); font-size: 1.25rem; margin: 0;">SHA-1 HASH ALGORITHM</h1>
+      </div>
+      <span class="badge-pixel amber">DIFFICULTY: INTERMEDIATE</span>
+    </div>
+
+    <!-- 5-Tab Navigation -->
+    <nav class="tab-nav" aria-label="Experiment Sections">
+      <button class="tab-btn active" data-tab="tab-theory">1. AIM & THEORY</button>
+      <button class="tab-btn" data-tab="tab-procedure">2. PROCEDURE</button>
+      <button class="tab-btn" data-tab="tab-sim">3. SIMULATOR</button>
+      <button class="tab-btn" data-tab="tab-analysis">4. ANALYSIS & VECTORS</button>
+      <button class="tab-btn" data-tab="tab-quiz">5. QUIZ & EVALUATION</button>
+    </nav>
+
+    <!-- Tab 1: Aim & Theory -->
+    <section id="tab-theory" class="tab-content active">
+      <div class="cyber-card" style="margin-bottom: 16px;">
+        <h3 style="font-family: var(--font-pixel); font-size: 0.95rem; margin-bottom: 8px;">1. AIM</h3>
+        <p style="font-size: 0.9rem; color: var(--text-secondary);">
+          To study the Secure Hash Algorithm 1 (SHA-1), examine 512-bit message padding, trace 80-word message schedule expansion (W[0..79]), and evaluate the 160-bit digest output.
+        </p>
+      </div>
+
+      <div class="cyber-card" style="margin-bottom: 16px;">
+        <h3 style="font-family: var(--font-pixel); font-size: 0.95rem; margin-bottom: 8px;">2. OBJECTIVES</h3>
+        <ul style="padding-left: 20px; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.8;">
+          <li>[Group 2 TODO: Add measurable learning objectives]</li>
+        </ul>
+      </div>
+
+      <div class="cyber-card">
+        <h3 style="font-family: var(--font-pixel); font-size: 0.95rem; margin-bottom: 8px;">3. REFERENCES</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">
+          1. NIST FIPS PUB 180-4: Secure Hash Standard (SHS).
+        </p>
+      </div>
+    </section>
+
+    <!-- Tab 2: Procedure -->
+    <section id="tab-procedure" class="tab-content">
+      <div class="cyber-card">
+        <h3 style="font-family: var(--font-pixel); font-size: 0.95rem; margin-bottom: 12px;">LABORATORY EXPERIMENT PROCEDURE</h3>
+        <ol style="padding-left: 20px; font-size: 0.88rem; color: var(--text-secondary); line-height: 2;">
+          <li>Switch to the <strong>Simulator</strong> tab.</li>
+          <li>Enter text message to hash.</li>
+          <li>[Group 2 TODO: Document your experiment steps here]</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Tab 3: Interactive Simulation -->
+    <section id="tab-sim" class="tab-content">
+      <div class="cyber-card" style="margin-bottom: 16px;">
+        <div class="card-header">
+          <span style="font-family: var(--font-pixel); font-size: 0.9rem;">INTERACTIVE SHA-1 WORKBENCH</span>
+          <button type="button" id="sha1-reset-btn" class="btn-cyber sm">RESET</button>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <label for="sha1-input" style="display: block; font-family: var(--font-pixel); font-size: 0.82rem; margin-bottom: 6px;">
+            INPUT MESSAGE:
+          </label>
+          <textarea id="sha1-input" class="input-cyber" rows="3">abc</textarea>
+        </div>
+
+        <div style="font-family: var(--font-pixel); font-size: 0.8rem; margin-bottom: 8px;">
+          INTERNAL 32-BIT REGISTERS (A, B, C, D, E):
+        </div>
+        <div class="register-grid-5">
+          <div class="register-cell"><div class="register-name">A</div><div class="register-val" id="reg-a">0x67452301</div></div>
+          <div class="register-cell"><div class="register-name">B</div><div class="register-val" id="reg-b">0xefcdab89</div></div>
+          <div class="register-cell"><div class="register-name">C</div><div class="register-val" id="reg-c">0x98badcfe</div></div>
+          <div class="register-cell"><div class="register-name">D</div><div class="register-val" id="reg-d">0x10325476</div></div>
+          <div class="register-cell"><div class="register-name">E</div><div class="register-val" id="reg-e">0xc3d2e1f0</div></div>
+        </div>
+
+        <div>
+          <label for="sha1-digest" style="display: block; font-family: var(--font-pixel); font-size: 0.82rem; margin-bottom: 6px;">
+            160-BIT SHA-1 MESSAGE DIGEST:
+          </label>
+          <input type="text" id="sha1-digest" class="input-cyber data-register" readonly>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 4: Analysis & Vectors -->
+    <section id="tab-analysis" class="tab-content">
+      <div class="cyber-card">
+        <h3 style="font-family: var(--font-pixel); font-size: 0.95rem; margin-bottom: 8px;">CANONICAL TEST VECTORS</h3>
+        <p style="font-size: 0.85rem; color: var(--text-secondary);">
+          [Group 2 TODO: List NIST test cases and observations on collision resistance]
+        </p>
+      </div>
+    </section>
+
+    <!-- Tab 5: Quiz & Evaluation -->
+    <section id="tab-quiz" class="tab-content">
+      <div id="quiz-mount"></div>
+    </section>
+  </div>
+
+  <script src="../../core/js/lab-bridge.js"></script>
+  <script src="../../core/js/quiz-engine.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

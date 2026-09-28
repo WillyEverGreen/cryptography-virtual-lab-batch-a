@@ -1,0 +1,62 @@
+[
+  {
+    "id": "cc-q1",
+    "question": "What is the mathematical encryption formula for the Caesar cipher where P is plaintext and K is the secret shift key?",
+    "options": [
+      "C = (P × K) mod 26",
+      "C = (P + K) mod 26",
+      "C = (P ^ K) mod 256",
+      "C = (P - K) mod 26"
+    ],
+    "correctIndex": 1,
+    "explanation": "Each plaintext character is shifted cyclically forward through the 26-letter Latin alphabet using modular addition: C = (P + K) mod 26."
+  },
+  {
+    "id": "cc-q2",
+    "question": "What is the maximum effective key space of a traditional Caesar cipher on the English alphabet?",
+    "options": [
+      "25 possible non-trivial keys",
+      "256 keys",
+      "2^128 keys",
+      "Infinite keys"
+    ],
+    "correctIndex": 0,
+    "explanation": "Since shifting by 0 or 26 leaves the text unchanged, there are only 25 unique non-trivial shift transformations (K = 1 to 25), making brute-force cryptanalysis trivial."
+  },
+  {
+    "id": "cc-q3",
+    "question": "Why does frequency analysis trivially break the Caesar cipher even on long ciphertexts?",
+    "options": [
+      "Because the key changes after every letter",
+      "Because each letter is mapped to a static substitute, preserving the underlying relative language frequencies (e.g., 'E' remains the most frequent)",
+      "Because it requires 128-bit key negotiation",
+      "Because Caesar cipher destroys statistical language redundancy"
+    ],
+    "correctIndex": 1,
+    "explanation": "Caesar cipher is a monoalphabetic substitution cipher. It does not introduce diffusion or confusion; the letter distribution is merely shifted cyclically along the alphabet."
+  },
+  {
+    "id": "cc-q4",
+    "question": "Which special case of the Caesar cipher uses a fixed key of K = 13 and is its own mathematical inverse?",
+    "options": [
+      "Vigenere cipher",
+      "ROT13",
+      "Playfair cipher",
+      "Atbash cipher"
+    ],
+    "correctIndex": 1,
+    "explanation": "ROT13 uses shift K = 13. Since (13 + 13) mod 26 = 0, applying ROT13 twice restores the original plaintext."
+  },
+  {
+    "id": "cc-q5",
+    "question": "What fundamental cryptographic principle modern ciphers use (defined by Claude Shannon) is completely missing from the Caesar cipher?",
+    "options": [
+      "Confusion and Diffusion",
+      "Asymmetric public keys",
+      "Hash padding",
+      "Digital signatures"
+    ],
+    "correctIndex": 0,
+    "explanation": "Claude Shannon established that secure ciphers require 'Confusion' (obscuring the relationship between key and ciphertext) and 'Diffusion' (spreading the influence of one plaintext symbol over many ciphertext symbols). Caesar provides neither."
+  }
+]

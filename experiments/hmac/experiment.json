@@ -1,0 +1,24 @@
+{
+  "id": "hmac",
+  "title": "HMAC (Keyed-Hash Message Authentication)",
+  "category": "Message Authentication Codes",
+  "sectorId": "sector-auth",
+  "difficulty": "Intermediate",
+  "estimatedTimeMinutes": 20,
+  "authors": [
+    { "name": "Jadern Crasto", "rollNo": "10716" },
+    { "name": "Wendell Dsouza", "rollNo": "10724" },
+    { "name": "Rohit Ahir", "rollNo": "10706" }
+  ],
+  "summary": "RFC 2104 standard: inner and outer key padding (ipad/opad XOR), cryptographic hashing, and integrity tag verification.",
+  "path": "experiments/hmac/index.html",
+  "icon": "pixel-lock",
+  "prerequisites": ["Cryptographic Hash Functions", "Bitwise XOR and Padding"],
+  "testVectors": [
+    {
+      "input": "Hi There",
+      "key": "0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b",
+      "expectedOutput": "9294727a3638bb1c13f48ef8158bfc9d"
+    }
+  ]
+}

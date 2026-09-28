@@ -1,0 +1,127 @@
+/* ==========================================================================
+   CRYPTOGRAPHY VIRTUAL LAB — ATMOSPHERE & UTILITY
+   Clean background grid, crisp SVG icons, and responsive layout
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-void);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+[data-theme="dark"] body,
+body.theme-dark {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* SVG Icon Helper */
+.icon-svg {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  stroke-width: 2;
+  stroke: currentColor;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.icon-svg.lg {
+  width: 20px;
+  height: 20px;
+}
+
+.icon-svg.sm {
+  width: 14px;
+  height: 14px;
+}
+
+/* Typography Helpers */
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Status Indicators */
+.status-led {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--border-dark);
+}
+
+.status-led.green {
+  background-color: var(--cyber-green);
+  box-shadow: 0 0 6px var(--cyber-green-glow);
+}
+
+.status-led.cyan {
+  background-color: var(--cyber-cyan);
+  box-shadow: 0 0 6px var(--cyber-cyan-glow);
+}
+
+.status-led.amber {
+  background-color: var(--cyber-amber);
+}
+
+/* Scanlines (Optional) */
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  background: linear-gradient(
+    rgba(255, 255, 255, 0) 50%, 
+    rgba(0, 0, 0, 0.15) 50%
+  );
+  background-size: 100% 4px;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+body.scanlines-active .scanlines {
+  opacity: 0.7;
+}
+
+/* Clean Modern Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-surface-elevated);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-medium);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cyber-cyan);
+}

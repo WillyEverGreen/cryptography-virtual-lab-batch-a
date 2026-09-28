@@ -1,0 +1,22 @@
+{
+  "id": "my-algorithm",
+  "title": "Algorithm Full Name",
+  "category": "Hashing / Symmetric / Asymmetric / Protocols",
+  "sectorId": "sector-hash",
+  "difficulty": "Intermediate",
+  "estimatedTimeMinutes": 20,
+  "authors": [
+    { "name": "Student 1", "rollNo": "CS21B001" },
+    { "name": "Student 2", "rollNo": "CS21B002" }
+  ],
+  "summary": "Concise 1-2 sentence description of what the experiment simulates and demonstrates.",
+  "path": "experiments/my-algorithm/index.html",
+  "icon": "pixel-key",
+  "prerequisites": ["Modular Arithmetic", "Bitwise Operations"],
+  "testVectors": [
+    {
+      "input": "Sample test string",
+      "expectedOutput": "Canonical test vector output"
+    }
+  ]
+}

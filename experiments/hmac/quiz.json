@@ -1,0 +1,38 @@
+[
+  {
+    "id": "hmac-q1",
+    "question": "What is the mathematical formulation of HMAC defined in RFC 2104?",
+    "options": [
+      "HMAC(K, m) = H((K' ⊕ opad) || H((K' ⊕ ipad) || m))",
+      "HMAC(K, m) = H(K || m)",
+      "HMAC(K, m) = H(m || K)",
+      "HMAC(K, m) = H(K) ⊕ H(m)"
+    ],
+    "correctIndex": 0,
+    "explanation": "HMAC applies a two-pass nested hash structure using outer pad (opad = 0x5c repeating) and inner pad (ipad = 0x36 repeating) to prevent length extension attacks."
+  },
+  {
+    "id": "hmac-q2",
+    "question": "Why is simple concatenation hash H(K || m) flawed and insecure compared to HMAC?",
+    "options": [
+      "It is vulnerable to Length Extension Attacks on Merkle-Damgard hash functions (e.g., MD5, SHA-1, SHA-256)",
+      "It is computationally too slow",
+      "It requires double key length",
+      "It only works on symmetric cipher blocks"
+    ],
+    "correctIndex": 0,
+    "explanation": "In Merkle-Damgard hashes, an attacker can append extra data and compute the new valid hash without knowing the secret key K (Length Extension Attack)."
+  },
+  {
+    "id": "hmac-q3",
+    "question": "What are the standard byte values for ipad and opad used in RFC 2104?",
+    "options": [
+      "ipad = 0x36, opad = 0x5c",
+      "ipad = 0x00, opad = 0xff",
+      "ipad = 0xaa, opad = 0x55",
+      "ipad = 0x12, opad = 0x34"
+    ],
+    "correctIndex": 0,
+    "explanation": "RFC 2104 specifies the inner pad as 64 repetitions of the byte 0x36 and the outer pad as 64 repetitions of the byte 0x5c."
+  }
+]

@@ -1,0 +1,27 @@
+{
+  "id": "caesar-cipher",
+  "title": "Caesar Cipher & Frequency Analysis",
+  "category": "Classical Ciphers",
+  "sectorId": "sector-classic",
+  "difficulty": "Novice",
+  "estimatedTimeMinutes": 15,
+  "authors": [
+    { "name": "Integration Architecture Team", "rollNo": "LEAD-01" }
+  ],
+  "summary": "Mathematical shift cipher C = (P + K) mod 26, modular arithmetic visualization, brute-force search space, and statistical cryptanalysis.",
+  "path": "experiments/caesar-cipher/index.html",
+  "icon": "pixel-shift-wheel",
+  "prerequisites": ["Modular Arithmetic Basics", "ASCII / Alphabet Encoding"],
+  "testVectors": [
+    {
+      "input": "HELLO WORLD",
+      "shift": 3,
+      "expectedOutput": "KHOOR ZRUOG"
+    },
+    {
+      "input": "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG",
+      "shift": 13,
+      "expectedOutput": "GRR DHVPX OEBJA SBK WHZCF BIRE GUR YNML QBT"
+    }
+  ]
+}

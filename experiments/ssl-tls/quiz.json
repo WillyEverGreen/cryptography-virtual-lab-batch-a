@@ -1,0 +1,38 @@
+[
+  {
+    "id": "tls-q1",
+    "question": "What is the primary role of the TLS Handshake Protocol?",
+    "options": [
+      "To authenticate peers, negotiate cipher suites, and securely establish symmetric session keys",
+      "To route IP packets across the internet",
+      "To compress HTTP request payloads",
+      "To replace DNS resolution"
+    ],
+    "correctIndex": 0,
+    "explanation": "The TLS Handshake allows client and server to authenticate each other, agree on cryptographic algorithms (cipher suites), and generate shared symmetric session keys."
+  },
+  {
+    "id": "tls-q2",
+    "question": "Why does TLS use asymmetric encryption during the handshake and symmetric encryption for actual application data?",
+    "options": [
+      "Asymmetric encryption is computationally expensive, so it is only used to establish shared keys; symmetric ciphers (AES-GCM) then encrypt bulk data at high speed",
+      "Symmetric encryption cannot encrypt text",
+      "Asymmetric encryption provides zero confidentiality",
+      "Digital certificates only work on symmetric algorithms"
+    ],
+    "correctIndex": 0,
+    "explanation": "Hybrid cryptography leverages the key exchange strength of asymmetric math (RSA/ECDHE) and the computational speed of symmetric ciphers (AES/ChaCha20) for high-throughput bulk transmission."
+  },
+  {
+    "id": "tls-q3",
+    "question": "In TLS 1.3, how many round trips (RTT) are required for a standard handshake compared to TLS 1.2?",
+    "options": [
+      "1-RTT in TLS 1.3 vs 2-RTT in TLS 1.2",
+      "4-RTT in TLS 1.3 vs 1-RTT in TLS 1.2",
+      "0-RTT only",
+      "Both require 3-RTT"
+    ],
+    "correctIndex": 0,
+    "explanation": "TLS 1.3 redesigned the handshake flow to complete in 1-RTT (and 0-RTT on resumption) by guessing the key exchange algorithm in ClientHello."
+  }
+]
