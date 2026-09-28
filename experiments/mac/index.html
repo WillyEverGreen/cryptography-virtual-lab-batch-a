@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../../core/css/design-tokens.css">
   <link rel="stylesheet" href="../../core/css/cyber-retro.css">
   <link rel="stylesheet" href="../../core/css/components.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/experiments/mac/style.css">
 </head>
 <body>
   <div class="cartridge-wrapper">
@@ -44,14 +44,33 @@
       <div class="cyber-card" style="margin-bottom: 16px;">
         <h3 style="font-family: var(--font-pixel); font-size: 0.95rem; margin-bottom: 8px;">2. OBJECTIVES</h3>
         <ul style="padding-left: 20px; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.8;">
-          <li>[Group 3 TODO: Add measurable learning objectives]</li>
+          <li>Explain how a shared secret provides message integrity and data-origin authentication.</li>
+          <li>Generate a CBC-MAC tag from padded message blocks and a secret key.</li>
+          <li>Trace the chaining value for every block and verify a received message.</li>
+          <li>Identify why basic CBC-MAC requires a fixed message length in practice.</li>
         </ul>
       </div>
 
+      <div class="cyber-card" style="margin-bottom: 16px;">
+        <h3 style="font-family: var(--font-pixel); font-size: 0.95rem; margin-bottom: 8px;">3. CBC-MAC THEORY</h3>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7;">
+          A Message Authentication Code is a short tag computed from a message and a secret key shared by the sender and receiver. The receiver recomputes the tag; matching tags indicate that the message was not changed and that it was created by someone who knows the key.
+        </p>
+        <div class="data-register mac-formula" style="margin: 12px 0;">
+          C<sub>0</sub> = 0<sup>128</sup><br>
+          C<sub>i</sub> = AES<sub>K</sub>(M<sub>i</sub> &oplus; C<sub>i-1</sub>)<br>
+          Tag = C<sub>n</sub>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7; margin: 0;">
+          This lab uses 16-byte AES blocks, UTF-8 input, and zero-padding for the final partial block. Basic CBC-MAC is intended for fixed-length messages; production systems should use a dedicated construction such as CMAC when message lengths vary.
+        </p>
+      </div>
+
       <div class="cyber-card">
-        <h3 style="font-family: var(--font-pixel); font-size: 0.95rem; margin-bottom: 8px;">3. REFERENCES</h3>
+        <h3 style="font-family: var(--font-pixel); font-size: 0.95rem; margin-bottom: 8px;">4. REFERENCES</h3>
         <p style="font-size: 0.85rem; color: var(--text-muted);">
-          1. Stallings, W. (2017). <em>Cryptography and Network Security</em> (7th ed.).
+          1. NIST SP 800-38A, Recommendation for Block Cipher Modes of Operation.<br>
+          2. Stallings, W. (2017). <em>Cryptography and Network Security</em> (7th ed.).
         </p>
       </div>
     </section>
@@ -61,8 +80,12 @@
       <div class="cyber-card">
         <h3 style="font-family: var(--font-pixel); font-size: 0.95rem; margin-bottom: 12px;">LABORATORY EXPERIMENT PROCEDURE</h3>
         <ol style="padding-left: 20px; font-size: 0.88rem; color: var(--text-secondary); line-height: 2;">
-          <li>Switch to the <strong>Simulator</strong> tab.</li>
-          <li>[Group 3 TODO: Document your experiment steps here]</li>
+          <li>Switch to the <strong>Simulator</strong> tab and review the default message and shared key.</li>
+          <li>Observe the padded message blocks, XOR inputs, chaining values, and final authentication tag.</li>
+          <li>Confirm that the receiver accepts the unchanged channel message.</li>
+          <li>Edit one character in the receiver's channel and observe the verification failure.</li>
+          <li>Restore the original message, change the shared key, and compare the new tag.</li>
+          <li>Use the <strong>Analysis &amp; Vectors</strong> tab to record the fixed-length limitation of basic CBC-MAC.</li>
         </ol>
       </div>
     </section>
@@ -97,6 +120,16 @@
           <input type="text" id="mac-tag-output" class="input-cyber data-register" readonly>
         </div>
 
+        <div class="mac-trace-panel" aria-live="polite">
+          <div class="mac-trace-header">
+            <span>INTERMEDIATE CBC-MAC TRACE</span>
+            <span id="mac-block-count" class="badge-pixel">0 BLOCKS</span>
+          </div>
+          <div id="mac-trace-output" class="mac-trace-output">
+            Enter a message and key to generate the trace.
+          </div>
+        </div>
+
         <!-- Tampering Simulation Stage -->
         <div class="tamper-panel">
           <div style="flex: 1;">
@@ -108,7 +141,7 @@
         </div>
 
         <div id="mac-verify-result" style="padding: 10px; background: var(--bg-surface-elevated); border: 1px solid var(--border-medium); font-family: var(--font-mono); font-size: 0.85rem;">
-          <!-- Group 3: render verification status here -->
+          Waiting for a MAC calculation.
         </div>
       </div>
     </section>
@@ -117,9 +150,17 @@
     <section id="tab-analysis" class="tab-content">
       <div class="cyber-card">
         <h3 style="font-family: var(--font-pixel); font-size: 0.95rem; margin-bottom: 8px;">SECURITY PROPERTIES & OBSERVATIONS</h3>
-        <p style="font-size: 0.85rem; color: var(--text-secondary);">
-          [Group 3 TODO: Document existential unforgeability and observations on tamper evidence]
-        </p>
+        <ul style="padding-left: 20px; font-size: 0.85rem; color: var(--text-secondary); line-height: 1.8;">
+          <li><strong>Integrity:</strong> changing even one message byte changes the recomputed tag.</li>
+          <li><strong>Authentication:</strong> an attacker without the shared key cannot reliably create a valid tag for a new message.</li>
+          <li><strong>No confidentiality:</strong> a MAC authenticates a message but does not hide its contents.</li>
+          <li><strong>No non-repudiation:</strong> both parties know the secret key, so either could have generated the tag.</li>
+          <li><strong>Important limitation:</strong> plain CBC-MAC must not be used carelessly with variable-length messages; CMAC is the standard general-purpose alternative.</li>
+        </ul>
+      </div>
+      <div class="cyber-card">
+        <h3 style="font-family: var(--font-pixel); font-size: 0.95rem; margin-bottom: 8px;">REFERENCE TEST VECTOR</h3>
+        <div id="mac-vector-output" class="mac-vector-output">The simulator will populate this vector from the default inputs.</div>
       </div>
     </section>
 
@@ -131,6 +172,6 @@
 
   <script src="../../core/js/lab-bridge.js"></script>
   <script src="../../core/js/quiz-engine.js"></script>
-  <script src="script.js"></script>
+  <script src="/experiments/mac/script.js"></script>
 </body>
 </html>

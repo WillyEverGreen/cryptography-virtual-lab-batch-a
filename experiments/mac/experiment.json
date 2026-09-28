@@ -12,7 +12,7 @@
     { "name": "Cajetan Dsouza", "rollNo": "10723" },
     { "name": "Shreyas Divekar", "rollNo": "10720" }
   ],
-  "summary": "Symmetric key authentication, CBC-MAC tag generation, tamper detection, and integrity verification.",
+  "summary": "Fixed-block CBC-MAC tag generation, intermediate chaining values, tamper detection, and integrity verification.",
   "path": "experiments/mac/index.html",
   "icon": "pixel-shield",
   "prerequisites": ["Symmetric Block Ciphers", "Cipher Block Chaining (CBC)"],
@@ -20,7 +20,12 @@
     {
       "input": "AUTHENTICATE THIS MESSAGE",
       "key": "SECRETKEY128",
-      "expectedOutput": "VERIFIED_TAG"
+      "expectedOutput": "51378FEE646000602909C37928C37AEC"
+    },
+    {
+      "input": "TRANSFER $500 TO BOB",
+      "key": "SHARED_SECRET_KEY",
+      "expectedOutput": "09DFB6A6B973213A2EADF2B5B7E44F55"
     }
   ]
 }

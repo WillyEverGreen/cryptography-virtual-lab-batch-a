@@ -34,5 +34,29 @@
     ],
     "correctIndex": 0,
     "explanation": "In CBC-MAC, each block is XORed with the preceding block's ciphertext before encryption; the final block's encrypted output represents the authentication tag."
+  },
+  {
+    "id": "mac-q4",
+    "question": "What should the receiver conclude when the received message produces a tag different from the sender's tag?",
+    "options": [
+      "The message may have been modified or the shared key is not the same",
+      "The message is confidential but not authenticated",
+      "The receiver should accept it because the message is readable",
+      "The MAC has successfully encrypted the message"
+    ],
+    "correctIndex": 0,
+    "explanation": "A tag mismatch means verification failed. The channel message may have been tampered with, or the sender and receiver may not be using the same secret key."
+  },
+  {
+    "id": "mac-q5",
+    "question": "Why must basic CBC-MAC be restricted to a fixed message length or replaced with CMAC?",
+    "options": [
+      "Variable-length use can enable extension and forgery problems",
+      "CBC-MAC can only process printable characters",
+      "AES cannot use a secret key with CBC-MAC",
+      "A longer message always has a shorter tag"
+    ],
+    "correctIndex": 0,
+    "explanation": "Plain CBC-MAC is secure under fixed-length assumptions. For variable-length messages, extension-related attacks are possible, so CMAC or another length-safe construction should be used."
   }
 ]
