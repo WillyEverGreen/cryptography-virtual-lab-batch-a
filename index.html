@@ -34,30 +34,30 @@
         </a>
 
         <!-- Main Navigation Links -->
-        <nav aria-label="Main Navigation">
+        <nav class="nav-container" aria-label="Main Navigation">
           <ul class="nav-links">
             <li>
               <a href="#/" class="nav-link active" id="nav-link-map">
                 <svg class="icon-svg" viewBox="0 0 24 24"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
-                <span>WORLD MAP</span>
+                <span>World Map</span>
               </a>
             </li>
             <li>
               <a href="#/experiments" class="nav-link" id="nav-link-catalog">
                 <svg class="icon-svg" viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-                <span>EXPERIMENTS</span>
+                <span>Experiments</span>
               </a>
             </li>
             <li>
               <a href="#/instructions" class="nav-link" id="nav-link-instructions">
                 <svg class="icon-svg" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-                <span>INSTRUCTIONS</span>
+                <span>Instructions</span>
               </a>
             </li>
             <li>
               <a href="#/about" class="nav-link" id="nav-link-about">
                 <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-                <span>ABOUT LAB</span>
+                <span>About Lab</span>
               </a>
             </li>
           </ul>
@@ -130,23 +130,25 @@
       <section id="view-cartridge" class="view-panel">
         <div class="cartridge-frame-container">
           <div class="cartridge-hud-bar">
-            <div style="display: flex; align-items: center; gap: 12px;">
-              <a href="#/map" class="btn-cyber sm" id="cartridge-back-btn">
+            <div class="cartridge-hud-left">
+              <a href="#/map" class="btn-cyber sm" id="cartridge-back-btn" title="Return to Crypto World Map">
                 <svg class="icon-svg sm" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-                <span>BACK TO MAP</span>
+                <span>Back to Map</span>
               </a>
-              <span id="cartridge-active-title" style="font-size: 0.95rem; font-weight: 700; color: var(--text-bright);">
-                EXPERIMENT MODULE TERMINAL
-              </span>
+              <div class="cartridge-divider"></div>
+              <div class="cartridge-title-box">
+                <span class="badge-pixel cyan" id="cartridge-sector-badge">MODULE</span>
+                <span id="cartridge-active-title">Experiment Module Terminal</span>
+              </div>
             </div>
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <button type="button" id="cartridge-reload-btn" class="btn-cyber sm" title="Reload Cartridge">
+            <div class="cartridge-hud-right">
+              <button type="button" id="cartridge-reload-btn" class="btn-cyber sm" title="Reload Experiment">
                 <svg class="icon-svg sm" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
-                <span>RELOAD</span>
+                <span>Reload</span>
               </button>
               <button type="button" id="cartridge-fullscreen-btn" class="btn-cyber sm" title="Toggle Fullscreen">
                 <svg class="icon-svg sm" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
-                <span>FULLSCREEN</span>
+                <span>Fullscreen</span>
               </button>
             </div>
           </div>
@@ -408,10 +410,12 @@
         const exp = LabRegistry.getExperimentById(expId);
 
         if (exp) {
-          cartridgeTitle.textContent = `EXPERIMENT: ${exp.title.toUpperCase()}`;
+          cartridgeTitle.textContent = exp.title;
+          const sectorBadge = document.getElementById('cartridge-sector-badge');
+          if (sectorBadge) sectorBadge.textContent = (exp.sector || 'MODULE').replace('sector-', '').toUpperCase();
           cartridgeIframe.src = exp.path;
         } else {
-          cartridgeTitle.textContent = 'EXPERIMENT NOT FOUND';
+          cartridgeTitle.textContent = 'Experiment Not Found';
           cartridgeIframe.src = 'about:blank';
         }
       });

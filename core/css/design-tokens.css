@@ -46,19 +46,24 @@
   --border-dark: #0f172a;
   --border-bright: var(--cyber-cyan);
 
-  --border-pixel-sm: 1.5px solid var(--border-dark);
-  --border-pixel-cyan: 1.5px solid var(--cyber-cyan);
-  --border-pixel-green: 1.5px solid var(--cyber-green);
+  --border-pixel-sm: 1px solid var(--border-medium);
+  --border-pixel-cyan: 1px solid var(--cyber-cyan);
+  --border-pixel-green: 1px solid var(--cyber-green);
 
-  /* Shadows */
-  --pixel-shadow-sm: 2px 2px 0px #0f172a;
-  --pixel-shadow-md: 3px 3px 0px #0f172a;
-  --pixel-shadow-lg: 5px 5px 0px #0f172a;
+  /* Modern Subtle Shadows */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.07), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
 
-  /* Ultra-Clean Modern Typography (NO jagged/blurry fonts) */
+  --pixel-shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --pixel-shadow-md: 0 2px 4px rgba(15, 23, 42, 0.08);
+  --pixel-shadow-lg: 0 4px 8px rgba(15, 23, 42, 0.12);
+
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --font-heading: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-pixel: var(--font-sans);
 
   /* Spacing */
   --space-2xs: 4px;
@@ -116,12 +121,17 @@ body.theme-dark {
   --border-dark: #52525b;
   --border-bright: #38bdf8;
 
-  --border-pixel-sm: 1.5px solid #27272a;
-  --border-pixel-cyan: 1.5px solid #38bdf8;
-  --border-pixel-green: 1.5px solid #22c55e;
+  --border-pixel-sm: 1px solid var(--border-medium);
+  --border-pixel-cyan: 1px solid #38bdf8;
+  --border-pixel-green: 1px solid #22c55e;
 
-  /* Deep Shadows */
-  --pixel-shadow-sm: 2px 2px 0px #000000;
-  --pixel-shadow-md: 3px 3px 0px #000000;
-  --pixel-shadow-lg: 5px 5px 0px #000000;
+  /* Modern Dark Mode Shadows */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.7);
+
+  --pixel-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --pixel-shadow-md: 0 2px 6px rgba(0, 0, 0, 0.6);
+  --pixel-shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.8);
 }

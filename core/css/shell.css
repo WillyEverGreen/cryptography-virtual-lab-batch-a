@@ -28,12 +28,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 24px;
+  padding: 8px 24px;
   gap: var(--space-md);
   max-width: 1440px;
   margin: 0 auto;
   width: 100%;
-  flex-wrap: wrap;
 }
 
 .brand-section {
@@ -42,6 +41,7 @@
   gap: 12px;
   text-decoration: none;
   color: var(--text-primary);
+  flex-shrink: 0;
 }
 
 .brand-icon {
@@ -58,7 +58,7 @@
 
 .brand-text h1 {
   font-family: var(--font-sans);
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 700;
   letter-spacing: -0.2px;
   color: var(--text-bright);
@@ -67,30 +67,50 @@
 }
 
 .brand-text p {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-family: var(--font-mono);
   color: var(--text-muted);
   margin: 0;
 }
 
-/* Nav Menu Links */
+/* Nav Menu Container & Segmented Pill Links */
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 3px;
   list-style: none;
+  padding: 3px;
+  background-color: var(--bg-surface-elevated);
+  border: 1px solid var(--border-dim);
+  border-radius: 8px;
   overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   -webkit-overflow-scrolling: touch;
+}
+
+.nav-links::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 .nav-link {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  padding: 6px 14px;
+  gap: 6px;
+  padding: 5px 12px;
   font-family: var(--font-sans);
   font-size: 0.82rem;
-  font-weight: 600;
+  font-weight: 500;
   text-decoration: none;
   color: var(--text-secondary);
   border-radius: 6px;
@@ -101,14 +121,21 @@
 }
 
 .nav-link:hover {
-  background-color: var(--bg-surface-elevated);
   color: var(--text-primary);
+  background-color: var(--bg-surface-hover);
 }
 
 .nav-link.active {
-  background-color: var(--bg-surface-elevated);
-  border-color: var(--border-medium);
+  background-color: var(--bg-surface);
+  border-color: var(--border-dim);
   color: var(--cyber-cyan);
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] .nav-link.active {
+  border-color: var(--border-medium);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
 /* User Progress & HUD Controls */
@@ -253,11 +280,51 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 16px;
+  padding: 8px 16px;
   background: var(--bg-surface-elevated);
   border-bottom: 1px solid var(--border-dim);
-  flex-wrap: wrap;
+  gap: 12px;
+  flex-wrap: nowrap;
+}
+
+.cartridge-hud-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  flex: 1;
+}
+
+.cartridge-divider {
+  width: 1px;
+  height: 18px;
+  background-color: var(--border-medium);
+  flex-shrink: 0;
+}
+
+.cartridge-title-box {
+  display: flex;
+  align-items: center;
   gap: 8px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+#cartridge-active-title {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-bright);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cartridge-hud-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
 }
 
 .cartridge-iframe {
@@ -289,19 +356,28 @@
    RESPONSIVE MEDIA QUERIES (Mobile & Tablet)
    ========================================================================== */
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   .hud-top-bar {
-    padding: 10px 16px;
-    gap: 12px;
+    padding: 8px 16px;
+    gap: 10px;
+    flex-wrap: wrap;
   }
 
-  .nav-links {
+  .nav-container {
     order: 3;
     width: 100%;
+    justify-content: flex-start;
     padding-top: 4px;
     border-top: 1px solid var(--border-dim);
   }
 
+  .nav-links {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 900px) {
   .main-viewport {
     padding: 16px 12px;
   }
@@ -316,7 +392,7 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 640px) {
   .brand-text h1 {
     font-size: 0.92rem;
   }
@@ -327,11 +403,24 @@
 
   .hud-telemetry {
     width: auto;
+    gap: 6px;
   }
 
   .dossier-pill {
     padding: 4px 8px;
     font-size: 0.75rem;
+  }
+
+  .cartridge-hud-bar {
+    padding: 8px 10px;
+  }
+
+  .cartridge-divider {
+    display: none;
+  }
+
+  .cartridge-hud-right span {
+    display: none;
   }
 
   .cartridge-iframe {
