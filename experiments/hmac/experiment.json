@@ -8,7 +8,8 @@
   "authors": [
     { "name": "Jadern Crasto", "rollNo": "10716" },
     { "name": "Wendell Dsouza", "rollNo": "10724" },
-    { "name": "Rohit Ahir", "rollNo": "10706" }
+    { "name": "Rohit Ahir", "rollNo": "10706" },
+    { "name": "Shreyas Divekar", "rollNo": "10720" }
   ],
   "summary": "RFC 2104 standard: inner and outer key padding (ipad/opad XOR), cryptographic hashing, and integrity tag verification.",
   "path": "experiments/hmac/index.html",

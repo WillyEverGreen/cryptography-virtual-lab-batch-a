@@ -9,8 +9,7 @@
     { "name": "Aarna Chopdekar", "rollNo": "10712" },
     { "name": "Slora Bar", "rollNo": "10708" },
     { "name": "Arya Chavan", "rollNo": "10709" },
-    { "name": "Cajetan Dsouza", "rollNo": "10723" },
-    { "name": "Shreyas Divekar", "rollNo": "10720" }
+    { "name": "Cajetan Dsouza", "rollNo": "10723" }
   ],
   "summary": "Fixed-block CBC-MAC tag generation, intermediate chaining values, tamper detection, and integrity verification.",
   "path": "experiments/mac/index.html",

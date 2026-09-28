@@ -7,7 +7,6 @@
   2. Slora Bar (Roll No: 10708)
   3. Arya Chavan (Roll No: 10709)
   4. Cajetan Dsouza (Roll No: 10723)
-  5. Shreyas Divekar (Roll No: 10720)
 
 ---
 

@@ -10,8 +10,8 @@ A unified, interactive virtual laboratory platform designed with a **Minimal Whi
 | :---: | :--- | :--- | :--- | :--- | :--- |
 | **01** | **MD5 Hash Algorithm** | Cryptographic Hash Functions | • **Nicole Dabre** (10717)<br>• **Alciya Dodti** (10722)<br>• **Larissa Dabreo** (10718)<br>• **Ruth Dmello** (10721) | [`experiments/md5/`](./experiments/md5/) | `exp/grp-01-md5` |
 | **02** | **SHA-1 Hash Algorithm** | Cryptographic Hash Functions | • **Swar** (10713)<br>• **Tanush Chavan** (10710)<br>• **Aaron Deniz** (10719)<br>• **Asher** (10715) | [`experiments/sha1/`](./experiments/sha1/) | `exp/grp-02-sha1` |
-| **03** | **Message Authentication Code (MAC)** | Message Authentication Codes | • **Aarna Chopdekar** (10712)<br>• **Slora Bar** (10708)<br>• **Arya Chavan** (10709)<br>• **Cajetan Dsouza** (10723)<br>• **Shreyas Divekar** (10720) | [`experiments/mac/`](./experiments/mac/) | `exp/grp-03-mac` |
-| **04** | **HMAC (Keyed-Hash Message Auth)** | Message Authentication Codes | • **Jadern Crasto** (10716)<br>• **Wendell Dsouza** (10724)<br>• **Rohit Ahir** (10706) | [`experiments/hmac/`](./experiments/hmac/) | `exp/grp-04-hmac` |
+| **03** | **Message Authentication Code (MAC)** | Message Authentication Codes | • **Aarna Chopdekar** (10712)<br>• **Slora Bar** (10708)<br>• **Arya Chavan** (10709)<br>• **Cajetan Dsouza** (10723) | [`experiments/mac/`](./experiments/mac/) | `exp/grp-03-mac` |
+| **04** | **HMAC (Keyed-Hash Message Auth)** | Message Authentication Codes | • **Jadern Crasto** (10716)<br>• **Wendell Dsouza** (10724)<br>• **Rohit Ahir** (10706)<br>• **Shreyas Divekar** (10720) | [`experiments/hmac/`](./experiments/hmac/) | `exp/grp-04-hmac` |
 | **05** | **SSL / TLS Handshake Protocol** | Secure Transport Protocols | • **Jace Jaison** (10711)<br>• **Ahamed Wafiq** (10705) | [`experiments/ssl-tls/`](./experiments/ssl-tls/) | `exp/grp-05-ssl-tls` |
 | **Ref** | **Caesar Cipher & Frequency Analysis** | Reference Sector | • **Integration Architecture Team** | [`experiments/caesar-cipher/`](./experiments/caesar-cipher/) | `main` |
 

@@ -82,8 +82,7 @@
         { "name": "Aarna Chopdekar", "rollNo": "10712" },
         { "name": "Slora Bar", "rollNo": "10708" },
         { "name": "Arya Chavan", "rollNo": "10709" },
-        { "name": "Cajetan Dsouza", "rollNo": "10723" },
-        { "name": "Shreyas Divekar", "rollNo": "10720" }
+        { "name": "Cajetan Dsouza", "rollNo": "10723" }
       ],
       "status": "assigned"
     },
@@ -97,7 +96,8 @@
       "authors": [
         { "name": "Jadern Crasto", "rollNo": "10716" },
         { "name": "Wendell Dsouza", "rollNo": "10724" },
-        { "name": "Rohit Ahir", "rollNo": "10706" }
+        { "name": "Rohit Ahir", "rollNo": "10706" },
+        { "name": "Shreyas Divekar", "rollNo": "10720" }
       ],
       "status": "assigned"
     },
